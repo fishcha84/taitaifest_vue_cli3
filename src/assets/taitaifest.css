@@ -1,0 +1,341 @@
+a:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width:480px){
+  .shortnewsimg{
+    height: 300px;
+  }
+}
+
+.shortnewsdiv{
+  margin: 10px;
+  border: none;
+  /* border: 1px solid hotpink; */
+}
+
+.nd1{
+  height:150px;
+  float: left;
+  border: none;
+}
+
+.nd2{
+  height:100px;
+  line-height:100px;
+  border: none;
+  display:inline-block;
+}
+
+.nd3{
+  height:50px;
+  line-height:50px;
+  border: none;
+  display:inline-block;
+}
+
+.ellipsis{
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.shortnewsdiv:hover{
+  cursor: pointer;	
+}
+
+.shortnewsimg{
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.shortnewstitle{
+  vertical-align: middle;
+  line-height:1em;
+  color: pink;
+}
+
+.shortnewsdate{
+  color:gray;
+}
+
+#morenews{
+  text-align: right;
+  margin: 10px;
+}
+
+.newstitle {
+  color: pink;
+  vertical-align: top;
+}
+
+.newsdate {
+  color: gray;
+}
+
+.newsimg{
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.productcard{
+  height: 500px;
+}
+.productimg{
+  height: 200px;
+  object-fit: cover;
+}
+
+.producttitleandprice{
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.productdescription{
+  height: 80px;
+}
+
+.producttitle{
+  color: pink;
+}
+
+.productprice{
+  color: hotpink;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  text-align:left;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content span {
+  display: block;
+  margin: 5px;
+}
+
+form rl,
+li rl,
+li span{
+  color: gray;
+  height: 50px;
+  line-height: 50px;
+}
+
+form rl:hover,
+form rl:active,
+li rl:hover,
+li rl:active{
+  color: hotpink;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+li rl2:hover,
+li rl2:active{
+  color:hotpink;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.carousel-item {
+  height: 50%;
+}
+  
+.carousel-item img {
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.breadcrumb {
+  height: 50px;
+  line-height: 20px;
+}
+
+footer {
+  background-color: pink;
+  color: gray;
+  text-align: center;
+}
+
+.footer-title {
+  height:50px;
+  line-height: 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
+}
+
+.footer-content ul li {
+  list-style-type: none;
+}
+
+.footer-content ul li a.router-link {
+  color: gray;
+}
+
+.footer-content ul li a.router-link-active {
+  cursor: pointer;
+}
+
+.socialicon {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+}
+
+.copyright {
+  vertical-align:middle;
+} 
+
+.fountainheadlinerstitle{
+  color: hotpink;
+}
+.headliners_list{
+  text-align:left;
+  position: relative;
+  left:46%;
+}
+
+.headliners_list ul li{
+  list-style: none;
+}
+
+#wish{
+  margin-bottom: 10px;
+}
+
+.map{
+  width: 100%;
+  height: 500px;
+  border:0;
+}
+
+.img-responsive {
+  width: 100%;
+  height: 100%;
+}
+
+.card{
+  margin: 10px;
+}
+
+.login input,p{
+  margin: 10px
+}
+
+table th{
+  border: 1px solid hotpink;
+  background-color: pink;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th,td{
+  width: 120px;
+  border:1px solid hotpink;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.day1{
+  margin-left: auto;
+}
+.day2{
+  margin-right: auto;
+}
+
+.timetabletable{
+  width: 100%;
+  max-width: 480px;
+  margin: 10px auto;
+}
+
+.table-hover tr:hover td{
+  background-color: lightyellow;
+}
+
+.tac {
+  text-align:center;
+}
+
+.tar {
+  text-align:right;
+}
+
+.vam {
+  vertical-align:middle;
+}
+
+.vendor,
+.check,
+.favorite,
+.faqbtn{
+  color: pink;
+  margin: 10px;
+}
+
+.vendor:hover,
+.vendor:active,
+.check:hover,
+.check:active,
+.favorite:hover,
+.favorite.active,
+.faqbtn:hover,
+.faqbtn:active{
+  cursor: pointer;
+  text-decoration: none;
+  color: hotpink;
+}
+
+.carttable,
+.favoritetable{
+  width: 100%;
+  /* padding: 10px; */
+  margin-bottom: 10px;
+}
+
+.confirmbtn{
+  width: 100%;
+  padding: 10px;
+}
+
+.orderform{
+  margin: 10px;
+}
+
+.ordertd1{
+  background-color: pink;
+}
+
+.jcsb{
+  display: flex;
+  justify-content: space-between;
+}
+
+.jcc{
+  display:flex;
+  justify-content:center;
+}
+
+.jcsbbtn{
+  width: 50%;
+  margin: 10px;
+}
