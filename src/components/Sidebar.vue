@@ -2,7 +2,7 @@
   <div class="sidebar">
     <div class="tac">Vendor Owners Only</div>
     <div class="tar logout">
-      <a href="#"  @click.prevent="logout">log out</a>
+      <a href="#" @click.prevent="logout">log out</a>
     </div>
     <div>
       <ul>
@@ -31,39 +31,37 @@
 
 <script>
 export default {
-  name:'Sidebar',
+  name: 'Sidebar',
   methods: {
     logout() {
-      const vm = this;
-      const api = `${process.env.VUE_APP_APIPATH}/logout`;
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/logout`
       this.$http.post(api).then((response) => {
         if (response.data.success) {
-          vm.$router.push("/shopping/signin");
+          vm.$router.push('/shopping/signin')
         }
-      });
+      })
     },
   },
 }
 </script>
 
 <style scoped>
-
-.sidebar{
-  color:pink;
-  background:gray;
+.sidebar {
+  color: pink;
+  background: gray;
   padding: 10px;
-  margin:10px;
+  margin: 10px;
   height: 95%;
-  
 }
 
-li{
+li {
   list-style: none;
 }
 
-.logout a:hover,li rl2:hover{
+.logout a:hover,
+li rl2:hover {
   text-decoration: none;
   color: hotpink;
 }
-
 </style>
