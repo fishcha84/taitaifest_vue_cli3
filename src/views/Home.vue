@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <!-- <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0&appId=2646271298939503&autoLogAppEvents=1" nonce="I1B69iTw"></script> -->
     <div class="container-fluid">
       <div class="row">
         <div class="col">
@@ -91,60 +89,35 @@
           <router-link tag="rl" to="/lineup">
             <h3 class="newartisttitle" style="color: hotpink">new artist released>>></h3>
           </router-link>
-          <div class="container">
-            <div class="item item1"><img src="@/assets/image/home/keane.jpg" alt="" /></div>
-            <div class="item item2">
-              <h3>//ROCK</h3>
-            </div>
-            <div class="item item4">
-              <h5>#uk</h5>
-            </div>
-
-            <div class="item item3">
-              <h1 style="text-align: center">KEANE</h1>
-              <h5 align-left class="ellipsis">
-                Keane, a legendary UK band, reunions recently. At this fest, besides a couple of classic songs, they
-                would also perform new songs to make your ears get pregnant.
-              </h5>
-              <div class="jcc">
-                <router-link to="/lineup">
-                  <button class="btn">check more detail</button>
-                </router-link>
-              </div>
-            </div>
-            <div class="clearfix"></div>
-          </div>
         </div>
       </div>
     </div>
 
-    <br />
-
-    <router-link tag="rl" to="/shopping/customer-orders">
-      <h3 class="coupontitle" style="color: hotpink"><<<< up to date coupon</h3>
-    </router-link>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="coupon-container">
-          <div class="col-md-12 col-lg-4">
-            <div class="coupon coupon1">
-              <span class="top content">BEFORE 3 MONTH</span>
-              <span class="bottom content">royalyou</span>
-            </div>
+    <div class="container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs col-md-6 col-lg-8 item item2">
+            <img src="@/assets/image/home/keane.jpg" alt="" />
           </div>
-
-          <div class="col-md-12 col-lg-4">
-            <div class="coupon coupon2">
-              <span class="top content">BEFORE 2 MONTH</span>
-              <span class="bottom content">earlybird</span>
-            </div>
+          <div class="col-xs col-md-6 col-lg-4 item item1">
+            <h3 vertical-align-middle>//ROCK</h3>
           </div>
+        </div>
 
-          <div class="col-md-12 col-lg-4">
-            <div class="coupon coupon3">
-              <span class="top content">BEFORE 1 MONTH</span>
-              <span class="bottom content">wakeuplate</span>
+        <div class="row">
+          <div class="col-xs col-md-6 col-lg-4 item item3 aic jcc"><h5>#uk</h5></div>
+          <div class="col-xs col-md-6 col-lg-8 item item4">
+            <h1 style="text-align: center">KEANE</h1>
+
+            <h5 class="ellipsis">
+              Keane, a legendary UK band, reunions recently. At this fest, besides a couple of classic songs, they would
+              also perform new songs to make your ears get pregnant.
+            </h5>
+
+            <div class="jcc">
+              <router-link to="/lineup">
+                <button class="btn">check more detail</button>
+              </router-link>
             </div>
           </div>
         </div>
@@ -153,24 +126,77 @@
 
     <br />
 
-    <router-link tag="rl" to="/news">
-      <h3 class="newstitle" style="color: hotpink">news>>></h3>
-    </router-link>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <router-link tag="rl" to="/shopping/customer-orders">
+            <h3 class="coupontitle" style="color: hotpink"><<<< up-to-date coupon</h3>
+          </router-link>
+        </div>
+      </div>
+    </div>
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-12 col-lg-8">
+        <div class="col-xs-12 col-lg-4 jcc p-2">
+          <div class="coupon coupon1">
+            <span class="top content">
+              <p>BEFORE</p>
+              <p>3</p>
+              <p>MONTH</p></span
+            >
+            <span class="bottom content">royalyou</span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-lg-4 jcc p-2">
+          <div class="coupon coupon2">
+            <span class="top content">
+              <p>BEFORE</p>
+              <p>2</p>
+              <p>MONTH</p></span
+            >
+            <span class="bottom content">earlybird</span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-lg-4 jcc p-2">
+          <div class="coupon coupon3">
+            <span class="top content"
+              ><p>BEFORE</p>
+              <p>1</p>
+              <p>MONTH</p>
+            </span>
+            <span class="bottom content">wakeuplate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <router-link tag="rl" to="/news">
+            <h3 class="newstitle" style="color: hotpink">news>>></h3>
+          </router-link>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-8">
           <NewsComponent class="m-2"></NewsComponent>
           <div id="morenews">
             <router-link id="morenews" to="/news" style="text-aling: right">more...</router-link>
           </div>
         </div>
 
-        <div class="col-sm-12 col-lg-4">
+        <div class="col-xs-12 col-md-6 col-lg-4 jcc">
           <div class="fbdiv m-2">
             <iframe
-              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnmemagazine&tabs=timeline&width=360&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=2646271298939503"
-              width="360"
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnmemagazine&tabs=timeline&width=320&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=2646271298939503"
+              width="320"
               height="650"
               style="border: none; overflow: hidden"
               scrolling="no"
@@ -209,44 +235,27 @@ export default {
 
 .container {
   background: lightgray;
-  overflow: hidden;
-  height: 470px;
-}
-
-.item {
-  float: left;
-  height: 250px;
-  /* border: 1px solid black; */
   padding: 20px;
 }
 
-.item1 {
-  width: 60%;
+.item {
+  /* margin-top: 20px; */
+  height: 200px;
 }
 
-.item1 img {
+.item2 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 0 -200px;
+  /* padding: 20px; */
+  /* object-position: 0 -250px; */
 }
 
-.item2 {
-  width: 40%;
-  display: flex;
-  align-items: center;
-}
-
-.item3 {
-  float: right;
-  width: 60%;
+.item4 {
+  /* padding: 20px; */
   position: relative;
-  top: -50px;
+  top: -20px;
   background-color: pink;
-}
-
-.clearfix {
-  clear: left;
 }
 
 .cc {
@@ -261,10 +270,6 @@ export default {
   -webkit-text-stroke-color: gray;
 }
 
-/* .carousel {
-  height: 400px;
-} */
-
 .carousel-item img {
   width: 100%;
   height: 100%;
@@ -275,20 +280,15 @@ export default {
   height: 400px;
 }
 
-/* .carousel-item img {
-  max-height: 400px;
-  object-fit: cover;
-} */
-
 .cc button,
-.item3 button {
+.item4 button {
   color: hotpink;
   border: 2px solid hotpink;
   font-style: bold;
 }
 
 .cc button:hover,
-.item3 button:hover {
+.item4 button:hover {
   background-color: hotpink;
   color: white;
 }
@@ -317,26 +317,13 @@ export default {
   text-align: right;
 }
 
-.coupon-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* .wrapper {
-  text-align: center;
-  border-bottom: 3px solid #343436;
-  background-color: #333;
-  height: 200px;
-} */
-
 .coupon {
   text-align: center;
   vertical-align: middle;
   width: 200px;
   height: 200px;
   border: 5px solid hotpink;
-  margin: 10px;
+  /* margin: 10px; */
 }
 
 .coupon1,
@@ -357,15 +344,20 @@ export default {
 .content {
   position: absolute;
   width: 200px;
-  text-align: center;
   height: 200px;
   line-height: 200px;
+  text-align: center;
   left: 0px;
   transition: top 0.5s;
 }
 
 .top {
   top: 0px;
+  font-size: 30px;
+  height: 200px;
+  line-height: 50px;
+  /* display: flex; */
+  /* align-items: stretch; */
 }
 
 .coupon1:hover .top,

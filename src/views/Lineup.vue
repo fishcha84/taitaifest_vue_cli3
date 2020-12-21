@@ -1,118 +1,188 @@
-
-
 <template>
   <div>
-
     <div class="container-fluid">
-
-      <div class="row my-2">
-        <div class="col">
-          <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" v-bind:style="{ width: progresslength + '%'}"> {{ progresslength }}% lineup relased</div>
-        </div>
-      </div>
-        
       <div class="row">
-        <div class="col">
-          <h5 class="text-center">select by genre</h5>
-          <div class="form-group">
-              <select class="form-control" v-model="selectedGenre">
-                <option v-for="(genre,key) in genres" :key="key" :value="genre">{{ genre }}</option>
-              </select>
+        <div class="col-xs-12 col-md-4 col-lg-3" style="padding: 20px">
+          <div style="border: 3px solid hotpink; padding: 10px">
+            <div class="jcc">
+              <div class="btn" style="background-color: hotpink; color: white; font-style: bold">
+                FOUNTAIN HEADLINERS
+              </div>
+            </div>
+
+            <div class="fountainheadlinerstitle mt-2">
+              I.Choose artists below that you would like them to be headliners:
+            </div>
+            <form action="vote.php" method="post">
+              <span class="form-group" v-for="(headliner, idx) in headliners" :key="idx" style="margin-right: 24px">
+                <input
+                  :id="headliner.artist"
+                  type="checkbox"
+                  name="voteforartist[]"
+                  :value="headliner.artist"
+                  v-model="voteforartist"
+                />
+                <label :for="headliner.artist">{{ headliner.artist }}</label>
+              </span>
+
+              <div class="form-group">
+                <input
+                  type="submit"
+                  class="btn btn-outline-primary btn-block"
+                  name="formSubmit"
+                  value="Vote! and see result"
+                />
+              </div>
+            </form>
+            <p class="fountainheadlinerstitle mt-2">II.Otherwise, make a wish:</p>
+            <form action="recommend.php" method="post">
+              <div class="form-group">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="artist"
+                  placeholder="key in an artist name"
+                  v-model="recommendartist.artist"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="submit"
+                  class="btn btn-outline-primary btn-block"
+                  name="formSubmit"
+                  value="Add to the list!"
+                />
+              </div>
+            </form>
           </div>
+          <!-- <div>result</div> -->
         </div>
-      </div>
+        <div class="col-xs-12 col-md-8 col-lg-9" style="padding: 20px">
+          <div class="row">
+            <div class="col">
+              <div
+                class="pb progress-bar bg-warning progress-bar-striped progress-bar-animated"
+                v-bind:style="{ width: progresslength + '%' }"
+              >
+                {{ progresslength }}% lineup relased
+              </div>
+            </div>
+          </div>
 
-      <div class="row">
-          <div class="col-sm col-md-6 col-lg-4"  v-for="(post, idx) in filteredPosts" :key="idx" >
+          <div class="row">
+            <div class="col">
+              <h5 class="text-center">shown by genre</h5>
+              <div class="form-group">
+                <select class="form-control" v-model="selectedGenre">
+                  <option v-for="(genre, key) in genres" :key="key" :value="genre">{{ genre }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-md-6" v-for="(post, idx) in filteredPosts" :key="idx">
               <div class="card lineupcard">
-                <img class="card-img-top" :src="post.imgUrl" :alt="post.artist">
+                <img class="card-img-top" :src="post.imgUrl" :alt="post.artist" />
                 <div class="card-body card-bodylineup">
-                  <h5 class="card-title  tac">{{ post.artist }}</h5>
+                  <h5 class="card-title tac">{{ post.artist }}</h5>
                   <p class="card-text">{{ post.introduction }}</p>
                   <a :href="post.musicVideoUrl" class="btn btn-danger d-block">{{ '<' + post.musicVideoName + '>' }}</a>
                 </div>
               </div>
+            </div>
           </div>
+        </div>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script>
-
 // import $ from 'jquery';
 
 export default {
-
   name: 'Lineup',
 
-  data(){
-    return{
-      posts:[],
-      genres: ["all","pop", "rock", "punk"],
-      selectedGenre:"all",
-      progresslength:0,
+  data() {
+    return {
+      progresslength: 0,
+      posts: [],
+      genres: ['all', 'pop', 'rock', 'punk'],
+      selectedGenre: 'all',
+      headliners: [],
+      voteforartist: [],
+      recommendartist: { artist: '' },
     }
   },
 
-  methods:{
-    getPosts(){
-      const vm=this;
-      this.$http.get('lineup.json').then((response)=>{
-        vm.posts=response.data;
-        vm.progresslength=vm.posts.length/20*100;
+  methods: {
+    getPosts() {
+      const vm = this
+      vm.$http.get('lineup.json').then((response) => {
+        vm.posts = response.data
+        vm.progresslength = (vm.posts.length / 20) * 100
       })
-    }
-  },
-
-  computed:{
-    
-    filteredPosts(){
-      const vm=this;
-      const selectedGenre=vm.selectedGenre;
-      if(vm.selectedGenre==="all"){
-        return vm.posts;
-      }else{
-        return vm.posts.filter((post)=>{
-          post.genre===selectedGenre;
-        }
-        )
+    },
+    getheadliners() {
+      this.$axios.get('https://fishcha842.000webhostapp.com/headliners.php').then((response) => {
+        this.headliners = response.data
+      })
+    },
+    toFormData(obj) {
+      var fd = new FormData()
+      for (var i in obj) {
+        fd.append(i, obj[i])
       }
-      // if(this.selectedGenre==="all"){
-      //   return this.posts;
-      // }else{
-      //   return this.posts.filter(function(post){
-      //     return post.genre===this.selectedGenre;
-      //   }
-      //   )
-      // }
+      return fd
+    },
 
-    }
+    vote() {
+      var fd = this.toFormData(this.voteforartist)
+      this.$axios.post('https://fishcha842.000webhostapp.com/vote.php', fd).then((response) => {})
+    },
+
+    recommend() {
+      var fd = this.toFormData(this.recommendartist)
+      this.$axios.post('https://fishcha842.000webhostapp.com/recommend.php', fd).then((response) => {
+        this.recommendartist = { artist: '' }
+      })
+    },
   },
 
-  created(){
-    this.getPosts();
-  }
-}
+  computed: {
+    filteredPosts() {
+      const vm = this
+      const selectedGenre = vm.selectedGenre
+      if (selectedGenre === 'all') {
+        return vm.posts
+      } else {
+        return vm.posts.filter((post) => {
+          return post.genre === selectedGenre
+        })
+      }
+    },
+  },
 
+  created() {
+    this.getheadliners()
+    this.getPosts()
+  },
+}
 </script>
 
 <style lang="scss" scoped>
-
-.card{
+.card {
   height: 450px;
 }
-.card-img-top{
-  height:200px;
+.card-img-top {
+  height: 200px;
   object-fit: cover;
 }
-.card-text{
-  height:80px;
+.card-text {
+  height: 80px;
 }
 
-
-
-
+.pb {
+  min-width: 200px;
+}
 </style>

@@ -284,6 +284,11 @@ td {
   justify-content: center;
 }
 
+.aic {
+  display: flex;
+  align-items: center;
+}
+
 .jcr {
   display: flex;
   justify-content: right;
