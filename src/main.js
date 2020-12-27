@@ -74,8 +74,11 @@ Vue.use(VeeValidate, {
 import AxiosPlugin from 'vue-axios-cors'
 Vue.use(AxiosPlugin)
 
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import VueHtml2Canvas from 'vue-html2canvas'
+Vue.use(VueHtml2Canvas)
+
+import html2canvas from 'html2canvas'
+Vue.use(html2canvas)
 
 new Vue({
   i18n,

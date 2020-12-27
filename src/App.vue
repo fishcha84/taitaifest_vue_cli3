@@ -31,21 +31,17 @@
 
               <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav mx-auto">
-                  <li class="nav-item"><router-link tag="rl" to="/news">News</router-link> |</li>
-                  <li class="nav-item">
-                    <router-link tag="rl" to="/fountain_headliners/vote_or_make_a_wish">FountainHeadliners</router-link>
-                    |
-                  </li>
+                  <li class="nav-item"><router-link class="rl" tag="rl" to="/news">News</router-link> |</li>
 
-                  <li class="nav-item"><router-link tag="rl" to="/lineup">Lineup</router-link> |</li>
-                  <li class="nav-item"><router-link tag="rl" to="/timetable">Timetable</router-link> |</li>
+                  <li class="nav-item"><router-link class="rl" tag="rl" to="/lineup">Lineup</router-link> |</li>
+                  <li class="nav-item"><router-link class="rl" tag="rl" to="/timetable">Timetable</router-link> |</li>
 
                   <li class="nav-item">
-                    <router-link tag="rl" to="/shopping/customer_orders">Shopping</router-link> |
+                    <router-link class="rl" tag="rl" to="/shopping/customer_orders">Shopping</router-link> |
                   </li>
 
                   <li class="nav-item dropdown">
-                    <span tag="rl" class="dropdown-toggle" data-toggle="dropdown">Faq</span> |
+                    <span tag="rl" class="dropdown-toggle" data-toggle="dropdown">Faq</span>
 
                     <div class="dropdown-menu">
                       <router-link tag="rl" to="/faq" @click.native="changeshowItem('showAccommondation')"
@@ -59,11 +55,8 @@
                       <router-link tag="rl" to="/faq" @click.native="changeshowItem('showMap')"
                         ><div class="dropdown-item">Map</div>
                       </router-link>
+                      <router-link tag="rl" to="/faq"><div class="dropdown-item">Guestbook</div> </router-link>
                     </div>
-                  </li>
-
-                  <li>
-                    <router-link tag="rl" to="/guestbook">Guestbook</router-link>
                   </li>
                 </ul>
               </div>
@@ -104,7 +97,6 @@
                   <div class="col-xs-12 col-md-4">
                     <ul>
                       <li class="guidelinetitle">who-</li>
-                      <li><router-link tag="rl" to="/fountain_headliners">headliners</router-link></li>
                       <li><router-link tag="rl" to="/lineup">lineup</router-link></li>
                       <li><router-link tag="rl" to="/timetable">timetable</router-link></li>
                     </ul>
@@ -115,7 +107,6 @@
                       <li class="guidelinetitle">how-</li>
                       <li><router-link tag="rl" to="/shopping/customer_orders">shopping</router-link></li>
                       <li><router-link tag="rl" to="/faq">faq</router-link></li>
-                      <li><router-link tag="rl" to="/guestbook">guestbook</router-link></li>
                     </ul>
                   </div>
                 </div>
@@ -173,9 +164,9 @@
                 </div>
               </div>
 
-              <a href="https://www.instagram.com/?hl=zh-tw">
-                <!-- <img class="socialicon" src="@/assets/image/socialicon/instagram.png" /> -->
-              </a>
+              <!-- <a href="https://www.instagram.com/?hl=zh-tw">
+                <img class="socialicon" src="@/assets/image/socialicon/instagram.png" />
+              </a> -->
               <a href="https://www.youtube.com/feed/trending">
                 <img class="socialicon" src="@/assets/image/socialicon/youtube_social_circle_red.png" />
               </a>
@@ -212,6 +203,12 @@ export default {
     $(function () {
       $('[data-toggle="popover"]').popover()
     })
+
+    $('.nav .page-scroll').click(function () {
+      if ($(window).width() <= 768) {
+        $('.navbar-toggle').trigger('click')
+      }
+    })
   },
 }
 </script>
@@ -227,12 +224,12 @@ export default {
   height: 100%;
   margin: 0;
 
-  display: flex; /*使物件依序排列*/
-  flex-direction: column; /*使物件垂直排列*/
+  display: flex;
+  flex-direction: column;
 }
 
 .wrapper {
-  flex-grow: 1; /*可佔滿垂直剩餘的空間*/
+  flex-grow: 1;
 }
 
 .footer {

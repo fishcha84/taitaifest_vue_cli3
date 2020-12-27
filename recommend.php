@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0;url='https://fishcha842.000webhostapp.com/#/fountain_headliners/vote_or_make_a_wish'">
+  <meta http-equiv="refresh" content="0;url='https://fishcha842.000webhostapp.com/#/lineup'">
 </head>
 <body>
     

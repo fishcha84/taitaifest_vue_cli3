@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="container-fluid" style="border: none">
-      <div class="row">
-        <div class="col">
+      <div class="row jcc">
+        <div class="col-6">
           <form action="" @click.prevent="payOrder(orderId)" class="orderform">
             <table class="container-fluid ordertable">
               <tr class="row orderrow">
@@ -12,16 +12,15 @@
                 </td>
               </tr>
               <tr class="row">
-                <td class="col-md-4 col-xs-12 ordertd1">products list</td>
+                <td class="col-md-4 col-xs-12 ordertd1 jcc aic">products list</td>
                 <td class="col-md-8 col-xs-12">
                   <p v-for="item in order.products" :key="item.id">{{ item.product.title }} * {{ item.qty }}</p>
-                  <!-- <p v-for="item in order.products" :key="item.id">{{item.product_id}} * {{item.qty}}</p> -->
                   <hr />
-                  <p>total:ntd {{ order.total }}</p>
+                  <p>total: {{ order.total | currency }} ntd</p>
                 </td>
               </tr>
               <tr class="row">
-                <td class="col-md-4 col-xs-12 ordertd1">customer's info</td>
+                <td class="col-md-4 col-xs-12 ordertd1 jcc aic">customer's info</td>
                 <td class="col-md-8 col-xs-12">
                   <p>name: {{ order.user.name }}</p>
                   <p>tel: {{ order.user.tel }}</p>
@@ -31,10 +30,12 @@
                 </td>
               </tr>
               <tr class="row">
-                <td class="col-md-4 col-xs-12 ordertd1 align-middle">payment status</td>
+                <td class="col-md-4 col-xs-12 ordertd1 align-middle jcc aic">payment status</td>
                 <td class="col-md-8 col-xs-12">
-                  <p v-if="!order.is_paid">unpaid</p>
-                  <p v-else style="color: hotpink">paid</p>
+                  <div class="jcc aic">
+                    <p v-if="!order.is_paid">unpaid</p>
+                    <p v-else style="color: hotpink">paid</p>
+                  </div>
                 </td>
               </tr>
             </table>
@@ -49,11 +50,21 @@
         </div>
       </div>
     </div>
+
+    <div id="checkModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>payment success！ keep shopping</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// import $ from 'jquery'
+import $ from 'jquery'
 
 import { mapGetters, mapActions } from 'vuex'
 
@@ -71,6 +82,12 @@ export default {
     },
     payOrder(orderId) {
       this.$store.dispatch('orderModules/payOrder', orderId)
+      // this.$router.push({ path: '/shopping/customer_orders' })
+      $('#checkModal').modal('show')
+      setTimeout(() => {
+        $('#checkModal').modal('hide')
+        this.$router.push({ path: '/shopping/customer_orders' })
+      }, 3000)
     },
   },
   computed: {

@@ -11,6 +11,7 @@
                 <th>product name</th>
                 <th>qty</th>
                 <th class="carttr">price for each</th>
+                <th class="carttr">subtotal</th>
               </tr>
             </thead>
             <tbody>
@@ -21,18 +22,19 @@
                   </button>
                 </td>
                 <td>{{ item.product.title }}</td>
-                <td>{{ item.qty }}{{ item.product.unit }}</td>
-                <td>{{ item.product.price }}</td>
+                <td>{{ item.qty }}/{{ item.product.unit }}</td>
+                <td>{{ item.product.price | currency }}</td>
+                <td>{{ Math.round(item.final_total) | currency }}</td>
               </tr>
             </tbody>
             <tfoot>
               <tr v-if="cart.total !== cart.final_total" style="color: hotpink">
-                <td colspan="3">coupon applied total:</td>
-                <td>{{ cart.final_total }}</td>
+                <td colspan="4">coupon applied total:</td>
+                <td>{{ cart.final_total | currency }}</td>
               </tr>
               <tr v-else>
-                <td colspan="3">total:</td>
-                <td>{{ cart.total }}</td>
+                <td colspan="4">total:</td>
+                <td>{{ cart.total | currency }}</td>
               </tr>
             </tfoot>
           </table>
@@ -40,8 +42,9 @@
       </div>
 
       <!-- coupon -->
-      <div class="row m-2">
-        <div class="col">
+
+      <div class="row m-2 jcc">
+        <div class="col-6">
           <form action="" @click.prevent="useCoupon(coupon)">
             <label for="coupon">coupon:</label>
             <div class="input-group mb-3">
@@ -49,7 +52,7 @@
                 type="text"
                 id="coupon"
                 class="form-control"
-                placeholder="please enter the coupon if you have one. don't tell others it's earlybird"
+                placeholder="please enter the coupon if you have one."
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
                 v-model="coupon"
@@ -63,12 +66,12 @@
       </div>
 
       <!-- user form validation -->
-      <div class="row m-2">
-        <validation-observer class="col" v-slot="{ invalid, handleSubmit }">
+      <div class="row m-2 jcc">
+        <validation-observer class="col-6" v-slot="{ invalid, handleSubmit }">
           <form @submit.prevent="handleSubmit(createOrder)">
             <validation-provider rules="required" v-slot="{ errors, classes }">
               <div class="form-group">
-                <label for="username">name:</label>
+                <label for="username">name:(required)</label>
                 <input
                   id="username"
                   class="form-control"
@@ -82,7 +85,7 @@
             </validation-provider>
             <validation-provider rules="required" v-slot="{ errors, classes }">
               <div class="form-group">
-                <label for="usertel">tel:</label>
+                <label for="usertel">tel:(required)</label>
                 <input
                   id="usertel"
                   class="form-control"
@@ -96,7 +99,7 @@
             </validation-provider>
             <validation-provider rules="required" v-slot="{ errors, classes }">
               <div class="form-group">
-                <label for="useradd">add:</label>
+                <label for="useradd">add:(required)</label>
                 <input
                   id="useradd"
                   class="form-control"
@@ -110,7 +113,7 @@
             </validation-provider>
             <validation-provider rules="required|email" v-slot="{ errors, classes }">
               <div class="form-group">
-                <label for="useremail">email:</label>
+                <label for="useremail">email:(required)</label>
                 <input
                   id="useremail"
                   class="form-control"
@@ -135,10 +138,21 @@
         </validation-observer>
       </div>
     </div>
+
+    <div id="cartModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>your cart is empty</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import $ from 'jquery'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -168,14 +182,22 @@ export default {
       const vm = this
       const order = vm.form
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`
-      this.$http.post(api, { data: order }).then((response) => {
+      vm.$http.post(api, { data: order }).then((response) => {
         if (response.data.success) {
-          console.log('createorder success!')
           vm.$router.push(`/shopping/customer_checkout/${response.data.orderId}`)
-        } else {
-          console.log('createorder failure!')
         }
       })
+    },
+    checkCart() {
+      if (this.$store.state.cart.carts.length === 0) {
+        $('#cartModal').modal('show')
+        setTimeout(() => {
+          $('#cartModal').modal('hide')
+        }, 1000)
+        setTimeout(() => {
+          this.$router.push({ path: '/shopping/customer_orders' })
+        }, 1500)
+      }
     },
   },
   computed: {
@@ -189,8 +211,24 @@ export default {
       },
     },
   },
+  beforeCreate() {
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
+  },
   created() {
     this.getCart()
+    this.checkCart()
   },
+  mounted() {
+    this.checkCart()
+  },
+  updated() {},
 }
 </script>
+
+<style>
+button:disabled {
+  cursor: not-allowed;
+}
+</style>

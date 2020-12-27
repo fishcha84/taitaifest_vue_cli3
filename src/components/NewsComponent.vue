@@ -49,6 +49,16 @@
             <hr />
             <img class="newsimg" :src="`${publicPath}image/news/${showContentItem.newsTitle}.jpg`" alt="" />
             <div v-html="showContentItem.newsContent"></div>
+            <iframe
+              src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffishcha842.000webhostapp.com%2F%23%2Fnews&width=450&layout=standard&action=like&size=small&share=true&height=35&appId=2646271298939503"
+              width="450"
+              height="35"
+              style="border: none; overflow: hidden"
+              scrolling="no"
+              frameborder="0"
+              allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            ></iframe>
             <hr />
           </div>
         </div>

@@ -1,67 +1,57 @@
 <template>
-  <div class="pagination">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item" :class="{'disabled': !pagination.has_pre}">
-          <a
-            class="page-link"
-            href="#"
-            @click.prevent="changePage(pagination.current_page - 1)"
-          >
-            Previous
-          </a>
-        </li>
-
-        <li
-          class="page-item"
-          v-for="page in pagination.total_pages"
-          :key="page"
-          :class="{ 'active': pagination.current_page === page}"
-        >
-          <a 
-            class="page-link" 
-            href="#" 
-            @click.prevent="changePage(page)"
-          >
-            {{ page }}
-          </a>
-        </li>
-
-        <li 
-          class="page-item" 
-          :class="{'disabled': !pagination.has_next}"
-        >
-          <a
-            class="page-link"
-            href="#"
-            @click.prevent="changePage(pagination.current_page + 1)"
-          >
-            Next
-          </a>
-
-        </li>
-        
-      </ul>
-    </nav>
+  <div class="jcc">
+    <paginate
+      :value="pageNum"
+      :page-count="totalPageCount"
+      :click-handler="changePage"
+      :page-range="3"
+      :margin-pages="1"
+      :prev-text="'Prev'"
+      :next-text="'Next'"
+      :container-class="'pagination'"
+      :page-class="'page-item'"
+      :page-link-class="'page-link'"
+      :prev-class="'page-item'"
+      :next-class="'page-item'"
+      :prev-link-class="'page-link'"
+      :next-link-class="'page-link'"
+      :active-class="'active'"
+    >
+    </paginate>
   </div>
 </template>
 
 <script>
+import Paginate from 'vuejs-paginate'
+
 export default {
-  name: "Pagination",
-  props: ['pagination'],
-  data() {
-    return {
-   
-    };
+  name: 'pagination',
+
+  components: {
+    Paginate,
   },
-  methods: {
-    changePage(pagex) {
-      this.$emit('change', pagex);
+  date() {
+    return {
+      currentPageNum: this.pageNum,
+    }
+  },
+  props: {
+    pageNum: {
+      type: Number,
+      default: 1,
+    },
+    totalPageCount: {
+      type: Number,
+    },
+    currentPage: {
+      type: Number,
     },
   },
-};
+  methods: {
+    changePage(num) {
+      this.currentPageNum = num
+      this.$emit('updatePageNum', num)
+    },
+  },
+}
 </script>
-
-<style>
-</style>

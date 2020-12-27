@@ -87,7 +87,9 @@
       <div class="row">
         <div class="col">
           <router-link tag="rl" to="/lineup">
-            <h3 class="newartisttitle" style="color: hotpink">new artist released>>></h3>
+            <h3 class="newartisttitle" style="color: hotpink">
+              new artist released<i class="fas fa-angle-double-right"></i>
+            </h3>
           </router-link>
         </div>
       </div>
@@ -130,7 +132,9 @@
       <div class="row">
         <div class="col">
           <router-link tag="rl" to="/shopping/customer-orders">
-            <h3 class="coupontitle" style="color: hotpink"><<<< up-to-date coupon</h3>
+            <h3 class="coupontitle" style="color: hotpink">
+              <i class="fas fa-angle-double-left"></i>up-to-date coupon
+            </h3>
           </router-link>
         </div>
       </div>
@@ -177,7 +181,7 @@
       <div class="row">
         <div class="col">
           <router-link tag="rl" to="/news">
-            <h3 class="newstitle" style="color: hotpink">news>>></h3>
+            <h3 class="newstitle" style="color: hotpink">news<i class="fas fa-angle-double-right"></i></h3>
           </router-link>
         </div>
       </div>
@@ -204,7 +208,6 @@
               allowfullscreen="true"
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
             ></iframe>
-            <!-- <div class="fb-page" data-href="https://www.facebook.com/nmemagazine" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/nmemagazine" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/nmemagazine">NME</a></blockquote></div> -->
           </div>
         </div>
       </div>
@@ -220,9 +223,6 @@ export default {
   components: {
     NewsComponent,
   },
-  // created() {
-  //   AOS.init()
-  // },
 }
 </script>
 
@@ -239,7 +239,6 @@ export default {
 }
 
 .item {
-  /* margin-top: 20px; */
   height: 200px;
 }
 
@@ -247,12 +246,9 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* padding: 20px; */
-  /* object-position: 0 -250px; */
 }
 
 .item4 {
-  /* padding: 20px; */
   position: relative;
   top: -20px;
   background-color: pink;
@@ -260,7 +256,6 @@ export default {
 
 .cc {
   text-align: left;
-  /* margin-bottom: 100px; */
 }
 
 .cc h1,
@@ -293,26 +288,6 @@ export default {
   color: white;
 }
 
-/* .carousel-item .c1 {
-  object-position: 0px -200px;
-}
-
-.carousel-item .c2 {
-  object-position: 0px -300px;
-}
-
-.carousel-item .c3 {
-  object-position: 0px -150px;
-}
-
-.carousel-item .c4 {
-  object-position: 0px -300px;
-} 
-
-.carousel-item .c5 {
-  object-position: 0px -200px;
-} */
-
 .coupontitle {
   text-align: right;
 }
@@ -323,7 +298,6 @@ export default {
   width: 200px;
   height: 200px;
   border: 5px solid hotpink;
-  /* margin: 10px; */
 }
 
 .coupon1,
@@ -356,8 +330,6 @@ export default {
   font-size: 30px;
   height: 200px;
   line-height: 50px;
-  /* display: flex; */
-  /* align-items: stretch; */
 }
 
 .coupon1:hover .top,

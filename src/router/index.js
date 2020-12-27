@@ -29,54 +29,24 @@ const routes = [
       breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'News' }],
     },
   },
-  {
-    path: '/fountain_headliners',
-    component: () => import('../views/FountainHeadliners.vue'),
-    meta: {
-      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'FountainHeadliners' }],
-    },
-    // children:[
-    //   {
-    //     name: 'VOTEORMAKEAWISH',
-    //     path: 'vote_or_make_a_wish',
-    //     component: () => import('../views/VoteOrMakeAWish.vue'),
-    //     meta: {
-    //       breadcrumb: [
-    //         {name:'Home',
-    //         link:'/home'},
-    //         {name:'FountainHeadliners',
-    //         },
-    //         {name:'Vote Or Make A Wish',
-    //         }
-    //       ]
-    //     },
-    //   },
-    //   {
-    //     name: '大咖票選結果',
-    //     path: 'result',
-    //     component: () => import('../views/Result.vue'),
-    //     meta: {
-    //       breadcrumb: [
-    //         {name:'Home',
-    //         link:'/home'},
-    //         {name:'FountainHeadliners',
-    //         link:'/fountain_headliners/vote_or_make_a_wish',
-    //         },
-    //         {name:'Result',}
-    //       ]
-    //     },
-    //   }
-    // ]
-  },
+
   {
     path: '/lineup',
     name: 'LINEUP',
-    // component: Lineup,
     component: () => import('../views/Lineup.vue'),
     meta: {
       breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Lineup' }],
     },
   },
+  {
+    path: '/result',
+    name: 'RESULT',
+    component: () => import('../views/Result.vue'),
+    meta: {
+      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Lineup', link: '/lineup' }, { name: 'Result' }],
+    },
+  },
+
   {
     path: '/timetable',
     name: '節目表',
@@ -123,7 +93,7 @@ const routes = [
             { name: 'Home', link: '/home' },
             { name: 'Shopping' },
             { name: 'step 1/3: Select', link: '/shopping/customer_orders' },
-            { name: 'step 1.5/3: Favorite' },
+            { name: 'step 2.5/3: Favorite' },
           ],
         },
       },
@@ -216,14 +186,7 @@ const routes = [
       breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Faq' }],
     },
   },
-  {
-    path: '/guestbook',
-    name: 'GUESTBOOK',
-    component: () => import('../views/Guestbook.vue'),
-    meta: {
-      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Guestbook' }],
-    },
-  },
+
   {
     path: '*',
     redirect: '/',

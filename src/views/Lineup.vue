@@ -55,7 +55,6 @@
               </div>
             </form>
           </div>
-          <!-- <div>result</div> -->
         </div>
         <div class="col-xs-12 col-md-8 col-lg-9" style="padding: 20px">
           <div class="row">
@@ -71,7 +70,7 @@
 
           <div class="row">
             <div class="col">
-              <h5 class="text-center">shown by genre</h5>
+              <h5 class="text-center">see who would perform at the fest by genre</h5>
               <div class="form-group">
                 <select class="form-control" v-model="selectedGenre">
                   <option v-for="(genre, key) in genres" :key="key" :value="genre">{{ genre }}</option>
@@ -86,7 +85,9 @@
                 <div class="card-body card-bodylineup">
                   <h5 class="card-title tac">{{ post.artist }}</h5>
                   <p class="card-text">{{ post.introduction }}</p>
-                  <a :href="post.musicVideoUrl" class="btn btn-danger d-block">{{ '<' + post.musicVideoName + '>' }}</a>
+                  <a :href="post.musicVideoUrl" class="btn btn-danger d-block">
+                    <i class="fas fa-angle-left"></i>{{ post.musicVideoName }}<i class="fas fa-angle-right"></i
+                  ></a>
                 </div>
               </div>
             </div>
@@ -98,8 +99,6 @@
 </template>
 
 <script>
-// import $ from 'jquery';
-
 export default {
   name: 'Lineup',
 

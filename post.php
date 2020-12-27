@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0;url='https://fishcha842.000webhostapp.com/#/guestbook'">
+  <meta http-equiv="refresh" content="0;url='https://fishcha842.000webhostapp.com/#/faq'">
 </head>
 <body>
 

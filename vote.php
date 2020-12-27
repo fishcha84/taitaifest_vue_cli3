@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- <meta http-equiv="refresh" content="0;url='https://fishcha842.000webhostapp.com/#/fountain_headliners/result'">  -->
-
-  <meta http-equiv="refresh" content="0;url='https://fishcha842.000webhostapp.com/#/fountain_headliners'"> 
+  <meta http-equiv="refresh" content="0;url='https://fishcha842.000webhostapp.com/#/result'"> 
 </head>
 <body>
 
