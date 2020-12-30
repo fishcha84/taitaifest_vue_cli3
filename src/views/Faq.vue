@@ -118,8 +118,8 @@
       </div>
 
       <div class="row">
-        <div class="col" style="padding-left: 50px">
-          <h3 class="faqbtn">Gusetbook</h3>
+        <div class="col" style="padding-left: 50px" id="guestbook">
+          <h3 class="faqbtn">Guestbook</h3>
         </div>
       </div>
 
@@ -188,6 +188,11 @@ export default {
       newmsg: { author: '', content: '', posttime: '' },
     }
   },
+  watch: {
+    items: () => {
+      this.$nextTick(() => [this.goAnchor(window.location.hash)])
+    },
+  },
   methods: {
     ...mapActions(['changeshowItem']),
 
@@ -210,8 +215,9 @@ export default {
       vm.$axios.get(api).then((res) => {
         const result = res.data.cwbopendata.location
         for (var i = 0; i < result.length; i++) {
-          if (result[i].locationName === '大安森林') {
+          if (result[i].locationName === '臺北') {
             vm.targetLocation = res.data.cwbopendata.location[i]
+            console.log(vm.targetLocation)
           }
         }
       })

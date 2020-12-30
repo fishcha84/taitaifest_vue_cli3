@@ -249,7 +249,6 @@ export default {
     openDelProductModal(item) {
       const vm = this
       $('#delProductModal').modal('show')
-      // vm.product=Object.assign({},item);
       vm.product = { ...item }
     },
     delProduct() {

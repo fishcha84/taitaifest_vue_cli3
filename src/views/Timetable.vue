@@ -3,13 +3,29 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <div class="jcc" style="color: hotpink"><h5>click to markup your own timetable and save as a pic</h5></div>
+          <div class="jcc aic" style="color: hotpink">
+            <h5>step1 enter your name</h5>
+            <input class="m-2" type="text" v-model="username" style="border: 2px solid hotpink" />
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <div id="capture" style="height: 300px">
-            <table class="timetabletable">
+          <div class="jcc aic" style="color: hotpink">
+            <h5>step2 click artist below to markup your own timetable and save as a pdf</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div id="capture">
+            <table class="timetabletable w-100" id="customers">
+              <tr>
+                <th colspan="5">
+                  <h3>{{ username }}'s taitaifest timetable</h3>
+                </th>
+              </tr>
               <tr>
                 <th></th>
                 <th colspan="2">day one</th>
@@ -59,9 +75,12 @@
               </tr>
             </table>
           </div>
-          <div class="jcc m-2">
-            <button class="btn btn-outline-primary" @click="save()">save your timetable</button>
-          </div>
+        </div>
+      </div>
+
+      <div class="row jcc">
+        <div class="col jcc m-2">
+          <button class="btn btn-outline-primary" id="capturebtn" @click="save()">save your timetable</button>
         </div>
       </div>
     </div>
@@ -70,18 +89,22 @@
 
 <script>
 import $ from 'jquery'
-import html2canvas from 'html2canvas'
+import html2Canvas from 'html2canvas'
+import JsPDF from 'jspdf'
 
 export default {
+  data() {
+    return {
+      username: '',
+    }
+  },
   methods: {
     changeClassName(item) {
       $(item).toggleClass('on off')
     },
     save() {
-      html2canvas(document.querySelector('#capture')).then((canvas) => {
-        let image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
-        window.location.href = image
-      })
+      window.scrollTo(0, 0)
+      this.getPdf(this.username + "' taitaifest timetable")
     },
   },
 }

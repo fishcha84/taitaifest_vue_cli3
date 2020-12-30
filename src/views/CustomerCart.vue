@@ -44,7 +44,7 @@
       <!-- coupon -->
 
       <div class="row m-2 jcc">
-        <div class="col-6">
+        <div class="col-md-12 col-lg-6">
           <form action="" @click.prevent="useCoupon(coupon)">
             <label for="coupon">coupon:</label>
             <div class="input-group mb-3">
@@ -211,19 +211,18 @@ export default {
       },
     },
   },
-  beforeCreate() {
+  beforeCreate() {},
+  created() {
+    this.getCart()
+  },
+  mounted() {
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
     })
   },
-  created() {
-    this.getCart()
+  updated() {
     this.checkCart()
   },
-  mounted() {
-    this.checkCart()
-  },
-  updated() {},
 }
 </script>
 

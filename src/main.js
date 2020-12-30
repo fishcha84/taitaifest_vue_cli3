@@ -80,6 +80,12 @@ Vue.use(VueHtml2Canvas)
 import html2canvas from 'html2canvas'
 Vue.use(html2canvas)
 
+import htmlToPdf from '@/components/htmlToPdf'
+Vue.use(htmlToPdf)
+
+import VueScrollTo from 'vue-scrollto'
+Vue.use(VueScrollTo)
+
 new Vue({
   i18n,
   el: '#app',

@@ -85,7 +85,7 @@ a:hover {
 }
 
 .productcard {
-  height: 500px;
+  height: 480px;
 }
 
 .productcard:hover {
@@ -98,13 +98,13 @@ a:hover {
   object-fit: cover;
 }
 
-.producttitleandprice {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.productdescription {
+.producttitleandprice,
+.productbtns {
   height: 80px;
+}
+
+.productdescription {
+  height: 60px;
 }
 
 .producttitle {
@@ -113,6 +113,12 @@ a:hover {
 
 .productprice {
   color: hotpink;
+}
+
+.productbtn {
+  width: 45%;
+  max-height: 50px;
+  overflow: hidden;
 }
 
 .dropdown-content {
@@ -217,11 +223,6 @@ td {
   margin-right: auto;
 }
 
-.timetabletable {
-  width: 50%;
-  margin: 10px auto;
-}
-
 .timetabletable tr th,
 .timetabletable tr td {
   height: 10px;
@@ -305,8 +306,10 @@ td {
 }
 
 .jcsbbtn {
+  display: flex;
+  justify-content: space-between;
   width: 50%;
-  margin: 10px;
+  padding: 10px;
 }
 
 input:focus {

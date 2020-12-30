@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col">
           <div class="tar vendor">
-            <router-link tag="rl" to="/shopping/admin/products"><p>VENDOR OWNERS?>>>THIS WAY PLEASE</p></router-link>
+            <router-link tag="rl" to="/shopping/signin"><p>VENDOR OWNERS?>>>THIS WAY PLEASE</p></router-link>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
 
       <div class="row">
         <div class="col">
-          <div class="jcc" :v-model="selectedCategory">
+          <div class="categorybtns" :v-model="selectedCategory">
             <button
               v-for="(category, key) in categories"
               :key="key"
@@ -54,7 +54,7 @@
           <div class="card productcard" v-if="item.is_enabled === 1">
             <img :src="item.imageUrl" class="card-img-top productimg" alt="..." @click="getProduct(item.id)" />
             <div class="card-body">
-              <div class="jcsb">
+              <div class="jcsb productbadgeandfavorite">
                 <button class="badge badge-primary badge-pill" @click="getProduct(item.id)">{{ item.category }}</button>
                 <i
                   class="fas fa-heart"
@@ -64,17 +64,21 @@
                 ></i>
                 <i class="far fa-heart" style="color: pink" v-else @click="addToMyFavorite(item)"></i>
               </div>
-              <div class="producttitleandprice">
-                <h3 class="card-title producttitle" @click="getProduct(item.id)">{{ item.title }}</h3>
+
+              <div class="jcsb aic producttitleandprice">
+                <h3 class="producttitle" @click="getProduct(item.id)">{{ item.title }}</h3>
                 <h6 class="productprice" @click="getProduct(item.id)">ntd {{ item.price | currency }}</h6>
               </div>
-              <p class="card-text productdescription" @click="getProduct(item.id)">{{ item.description }}</p>
 
-              <div class="jcsb">
-                <button class="btn btn-outline-secondary jcsbbtn" @click="getProduct(item.id)">
+              <div class="jcsb aic productdescription">
+                <p class="card-text ellipsis" @click="getProduct(item.id)">{{ item.description }}</p>
+              </div>
+
+              <div class="jcsb aic productbtns">
+                <button class="btn btn-outline-secondary productbtn" @click="getProduct(item.id)">
                   <i class="fas fa-cog fa-spin" v-if="loadingItem === item.id"></i>more
                 </button>
-                <button class="btn btn-outline-primary jcsbbtn" @click="addtoCart(item.id, 1)">
+                <button class="btn btn-outline-primary productbtn" @click="addtoCart(item.id, 1)">
                   <i class="fas fa-cog fa-spin" v-if="loadingItem === item.id"></i>add to cart
                 </button>
               </div>
@@ -213,10 +217,15 @@ export default {
 </script>
 
 <style scoped>
+.categorybtns {
+  display: table;
+  margin: 0 auto;
+}
+
 .categorybtn {
   border-radius: 20px;
   margin: 10px;
-  width: 100px;
+  min-width: 100px;
 }
 
 .modal-image {
