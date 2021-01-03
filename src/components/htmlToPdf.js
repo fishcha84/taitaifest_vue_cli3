@@ -4,18 +4,18 @@ import JsPDF from 'jspdf'
 export default {
   install(Vue, options) {
     Vue.prototype.getPdf = function (title) {
-      var element = document.querySelector('#capture')
+      let element = document.querySelector('#capture')
       setTimeout(() => {
         html2Canvas(element).then(function (canvas) {
-          var contentWidth = canvas.width
-          var contentHeight = canvas.height
-          var pageHeight = (contentWidth / 592.28) * 841.89
-          var leftHeight = contentHeight
-          var position = 0
-          var imgWidth = 595.28
-          var imgHeight = (592.28 / contentWidth) * contentHeight
-          var pageData = canvas.toDataURL('image/jpeg', 1.0)
-          var pdf = new JsPDF('', 'pt', 'a4')
+          let contentWidth = canvas.width
+          let contentHeight = canvas.height
+          let pageHeight = (contentWidth / 592.28) * 841.89
+          let leftHeight = contentHeight
+          let position = 0
+          let imgWidth = 595.28
+          let imgHeight = (592.28 / contentWidth) * contentHeight
+          let pageData = canvas.toDataURL('image/jpeg', 1.0)
+          let pdf = new JsPDF('', 'pt', 'a4')
           if (leftHeight < pageHeight) {
             pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight)
           } else {

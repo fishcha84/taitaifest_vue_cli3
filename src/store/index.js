@@ -40,7 +40,7 @@ export default new Vuex.Store({
       axios.get(api).then((response) => {
         context.commit('PRODUCT', response.data.product)
         context.commit('PRODUCTIMAGESRC', response.data.product.imageUrl)
-        for (var i = 0; i < this.state.productPic.length; i++) {
+        for (let i = 0; i < this.state.productPic.length; i++) {
           if (this.state.productPic[i].id === this.state.product.id) {
             context.commit('PRODUCTPICI', this.state.productPic[i])
           }
@@ -163,7 +163,7 @@ export default new Vuex.Store({
       state.myFavorite.push(payload)
     },
     REMOVEFAVORITE(state, payload) {
-      for (var i = 0; i < state.myFavorite.length; i++) {
+      for (let i = 0; i < state.myFavorite.length; i++) {
         if (state.myFavorite[i] === payload) {
           state.myFavorite.splice(i, 1)
         }

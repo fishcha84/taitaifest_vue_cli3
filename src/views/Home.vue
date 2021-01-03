@@ -49,7 +49,7 @@
               <div class="carousel-item">
                 <img class="c4" src="@/assets/image/carousel/4.jpg" alt="fun" />
                 <div class="carousel-caption cc">
-                  <h1>VARIOUS ACTIVITIES</h1>
+                  <h1>letIOUS ACTIVITIES</h1>
                   <h5>you won't feel bored</h5>
                   <router-link to="/shopping/customer_orders">
                     <button class="btn">TICKETS ON SALE NOW >>></button>

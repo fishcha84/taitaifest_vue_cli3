@@ -214,7 +214,7 @@ export default {
         'https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/O-A0003-001?Authorization=rdec-key-123-45678-011121314&format=JSON'
       vm.$axios.get(api).then((res) => {
         const result = res.data.cwbopendata.location
-        for (var i = 0; i < result.length; i++) {
+        for (let i = 0; i < result.length; i++) {
           if (result[i].locationName === '臺北') {
             vm.targetLocation = res.data.cwbopendata.location[i]
           }
@@ -237,8 +237,8 @@ export default {
     },
 
     toFormData(obj) {
-      var fd = new FormData()
-      for (var i in obj) {
+      let fd = new FormData()
+      for (let i in obj) {
         fd.append(i, obj[i])
       }
       return fd
@@ -246,7 +246,7 @@ export default {
 
     post() {
       const vm = this
-      var fd = this.toFormData(this.newmsg)
+      let fd = this.toFormData(this.newmsg)
       this.$axios.post('https://fishcha842.000webhostapp.com/post.php', fd).then((response) => {
         vm.getmsgs()
       })

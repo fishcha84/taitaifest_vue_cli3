@@ -128,20 +128,20 @@ export default {
       })
     },
     toFormData(obj) {
-      var fd = new FormData()
-      for (var i in obj) {
+      let fd = new FormData()
+      for (let i in obj) {
         fd.append(i, obj[i])
       }
       return fd
     },
 
     vote() {
-      var fd = this.toFormData(this.voteforartist)
+      let fd = this.toFormData(this.voteforartist)
       this.$axios.post('https://fishcha842.000webhostapp.com/vote.php', fd).then((response) => {})
     },
 
     recommend() {
-      var fd = this.toFormData(this.recommendartist)
+      let fd = this.toFormData(this.recommendartist)
       this.$axios.post('https://fishcha842.000webhostapp.com/recommend.php', fd).then((response) => {
         this.recommendartist = { artist: '' }
       })
