@@ -52,7 +52,7 @@ export default {
     signin() {
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/admin/signin`
-      this.$http.post(api, vm.user).then((response) => {
+      vm.$http.post(api, vm.user).then((response) => {
         if (response.data.success) {
           const token = response.data.token
           const expired = response.data.expired

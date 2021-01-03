@@ -193,7 +193,7 @@ export default {
       this.$store.dispatch('updateLoading', true)
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/products?page=${page}`
-      this.$http.get(api).then((response) => {
+      vm.$http.get(api).then((response) => {
         if (response.data.success) {
           vm.products = response.data.products
           vm.pagination = response.data.pagination
@@ -234,7 +234,7 @@ export default {
       const fd = new FormData()
       fd.append('file-to-upload', uploadedFile)
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`
-      this.$http
+      vm.$http
         .post(api, fd, {
           headers: {
             'Content-Type': 'multipart/form-data',

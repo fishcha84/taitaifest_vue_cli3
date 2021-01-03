@@ -147,8 +147,8 @@ export default {
     getCoupons(page = 1) {
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`
-      this.$store.dispatch('updateLoading', true)
-      this.$http.get(api).then((response) => {
+      vm.$store.dispatch('updateLoading', true)
+      vm.$http.get(api).then((response) => {
         if (response.data.success) {
           vm.$store.dispatch('updateLoading', false)
           vm.coupons = response.data.coupons
@@ -177,7 +177,7 @@ export default {
         api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`
       }
 
-      this.$http[method](api, { data: vm.tempCoupon }).then((response) => {
+      vm.$http[method](api, { data: vm.tempCoupon }).then((response) => {
         if (response.data.success) {
           $('#tempCouponModal').modal('hide')
           vm.getCoupons()
