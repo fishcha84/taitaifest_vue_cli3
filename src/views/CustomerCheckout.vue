@@ -1,8 +1,13 @@
 <template>
   <div>
     <div class="container-fluid" style="border: none">
+      <div class="row">
+        <div class="col">
+          <Breadcrumb />
+        </div>
+      </div>
       <div class="row jcc">
-        <div class="col-6">
+        <div class="col-sm-12 col-md-6">
           <form action="" @click.prevent="payOrder(orderId)" class="orderform">
             <table class="container-fluid ordertable">
               <tr class="row orderrow">
@@ -39,13 +44,9 @@
                 </td>
               </tr>
             </table>
-            <button
-              v-if="!order.is_paid"
-              class="btn btn-outline-danger d-block"
-              style="width: 100%; margin-top: 10px; margin-bottom: 10px"
-            >
-              pay it!
-            </button>
+            <div>
+              <button v-if="!order.is_paid" class="btn btn-outline-danger w-100 mt-2 mb-2">pay it!</button>
+            </div>
           </form>
         </div>
       </div>
@@ -65,7 +66,7 @@
 
 <script>
 import $ from 'jquery'
-
+import Breadcrumb from '@/components/Breadcrumb.vue'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -73,6 +74,9 @@ export default {
     return {
       orderId: '',
     }
+  },
+  components: {
+    Breadcrumb,
   },
   methods: {
     ...mapActions('orderModules', ['getOrder', 'payOrder']),
@@ -82,7 +86,6 @@ export default {
     },
     payOrder(orderId) {
       this.$store.dispatch('orderModules/payOrder', orderId)
-      // this.$router.push({ path: '/shopping/customer_orders' })
       $('#checkModal').modal('show')
       setTimeout(() => {
         $('#checkModal').modal('hide')

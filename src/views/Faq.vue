@@ -5,7 +5,7 @@
         <div class="col">
           <div class="accordion" id="accordionExample">
             <div class="card">
-              <div class="card-header" id="headingOne">
+              <div class="card-header" id="accomondation">
                 <h4 class="mb-0">
                   <div
                     class="faqbtn"
@@ -23,7 +23,7 @@
                 id="collapseOne"
                 class="collapse"
                 :class="{ show: showItem === 'showAccommondation' }"
-                aria-labelledby="headingOne"
+                aria-labelledby="accomondation"
                 data-parent="#accordionExample"
               >
                 <div class="card-body">
@@ -37,7 +37,7 @@
             </div>
 
             <div class="card">
-              <div class="card-header" id="headingTwo">
+              <div class="card-header" id="gettinghere">
                 <h4 class="mb-0">
                   <div
                     class="faqbtn"
@@ -55,7 +55,7 @@
                 id="collapseTwo"
                 class="collapse"
                 :class="{ show: showItem === 'showGettingHere' }"
-                aria-labelledby="headingTwo"
+                aria-labelledby="gettinghere"
                 data-parent="#accordionExample"
               >
                 <div class="card-body">
@@ -81,7 +81,7 @@
             </div>
 
             <div class="card">
-              <div class="card-header" id="headingThree">
+              <div class="card-header" id="map">
                 <h4 class="mb-0">
                   <div
                     class="faqbtn"
@@ -98,7 +98,7 @@
                 id="collapseThree"
                 class="collapse"
                 :class="{ show: showItem === 'showMap' }"
-                aria-labelledby="headingThree"
+                aria-labelledby="map"
                 data-parent="#accordionExample"
               >
                 <div class="card-body">
@@ -194,7 +194,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['changeshowItem']),
+    ...mapActions(['changeShowItem']),
 
     getuBike101() {
       const vm = this
@@ -204,8 +204,8 @@ export default {
       })
     },
 
-    changeshowItem(item) {
-      this.$store.dispatch('changeshowItem', item)
+    changeShowItem(item) {
+      this.$store.dispatch('changeShowItem', item)
     },
 
     getTemp() {
@@ -217,7 +217,6 @@ export default {
         for (var i = 0; i < result.length; i++) {
           if (result[i].locationName === '臺北') {
             vm.targetLocation = res.data.cwbopendata.location[i]
-            console.log(vm.targetLocation)
           }
         }
       })

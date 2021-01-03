@@ -17,7 +17,7 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.price }}</td>
                 <td><i class="fas fa-trash-alt" @click="removeFromMyFavorite(item)"></i></td>
-                <td><i class="fas fa-shopping-cart" @click="addtoCart(item.id, 1)"></i></td>
+                <td><i class="fas fa-shopping-cart" @click="addToCart(item.id, 1)"></i></td>
               </tr>
             </tbody>
           </table>
@@ -47,15 +47,15 @@ export default {
     return {}
   },
   methods: {
-    ...mapActions(['addtoCart', 'removeFromMyFavorite']),
+    ...mapActions(['addToCart', 'removeFromMyFavorite']),
 
     removeFromMyFavorite(item) {
       this.$store.dispatch('removeFromMyFavorite', item)
       this.checkFavorite()
     },
 
-    addtoCart(id, qty) {
-      this.$store.dispatch('addtoCart', { id, qty })
+    addToCart(id, qty) {
+      this.$store.dispatch('addToCart', { id, qty })
       this.$router.push({ path: '/shopping/customer_orders' })
     },
     checkFavorite() {

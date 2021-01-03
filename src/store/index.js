@@ -16,6 +16,9 @@ export default new Vuex.Store({
       loadingItem: '',
     },
     product: {},
+    productImageSrc: '',
+    productPic: [],
+    productPicI: {},
     cart: {
       carts: [],
       total: 0,
@@ -25,10 +28,9 @@ export default new Vuex.Store({
     myFavorite: [],
   },
   actions: {
-    changeshowItem(context, item) {
+    changeShowItem(context, item) {
       context.commit('SHOWITEM', item)
     },
-
     updateLoading(context, status) {
       context.commit('LOADING', status, { root: true })
     },
@@ -37,29 +39,72 @@ export default new Vuex.Store({
       context.commit('LOADINGITEM', id, { root: true })
       axios.get(api).then((response) => {
         context.commit('PRODUCT', response.data.product)
+        context.commit('PRODUCTIMAGESRC', response.data.product.imageUrl)
+        for (var i = 0; i < this.state.productPic.length; i++) {
+          if (this.state.productPic[i].id === this.state.product.id) {
+            context.commit('PRODUCTPICI', this.state.productPic[i])
+          }
+        }
         context.commit('LOADINGITEM', '', { root: true })
         $('#moreModal').modal('show')
       })
     },
-
-    addtoCart(context, { id, qty }) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      var CartContent = {
-        product_id: id,
-        qty,
-      }
-      context.commit('LOADINGITEM', id, { root: true })
-      axios.post(api, { data: CartContent }).then((response) => {
-        if (response.data.success) {
-          context.commit('LOADINGITEM', '', { root: true })
-          $('#addtocartModal').modal('show')
-          setTimeout(() => {
-            $('#addtocartModal').modal('hide')
-          }, 1000)
-          $('#moreModal').modal('hide')
-          context.dispatch('getCart')
-        }
+    getProductPic(context) {
+      axios.get('showProductPic.json').then((response) => {
+        context.commit('PRODUCTPIC', response.data)
       })
+    },
+
+    changeProductImageSrc(context, pn) {
+      if (pn === 'ori') {
+        context.commit('PRODUCTIMAGESRC', this.state.product.imageUrl)
+      } else {
+        context.commit('PRODUCTIMAGESRC', this.state.productPicI[pn])
+      }
+    },
+
+    addToCart(context, { id, qty }) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      let filtered = this.state.cart.carts.filter((item) => item.product_id === id)
+      if (filtered.length > 0) {
+        filtered.forEach((element) => {
+          context.dispatch('removeCartItem', element.id)
+          let totalQty = element.qty + qty >= 4 ? 4 : (element.qty += qty)
+          let CartContent = {
+            product_id: id,
+            qty: totalQty,
+          }
+          context.commit('LOADINGITEM', id, { root: true })
+          axios.post(api, { data: CartContent }).then((response) => {
+            if (response.data.success) {
+              context.commit('LOADINGITEM', '', { root: true })
+              $('#addToCartModal').modal('show')
+              setTimeout(() => {
+                $('#addToCartModal').modal('hide')
+              }, 1000)
+              $('#moreModal').modal('hide')
+              context.dispatch('getCart')
+            }
+          })
+        })
+      } else {
+        let CartContent = {
+          product_id: id,
+          qty,
+        }
+        context.commit('LOADINGITEM', id, { root: true })
+        axios.post(api, { data: CartContent }).then((response) => {
+          if (response.data.success) {
+            context.commit('LOADINGITEM', '', { root: true })
+            $('#addToCartModal').modal('show')
+            setTimeout(() => {
+              $('#addToCartModal').modal('hide')
+            }, 1000)
+            $('#moreModal').modal('hide')
+            context.dispatch('getCart')
+          }
+        })
+      }
     },
 
     getCart(context) {
@@ -102,6 +147,15 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    PRODUCTPICI(state, payload) {
+      state.productPicI = payload
+    },
+    PRODUCTPIC(state, payload) {
+      state.productPic = payload
+    },
+    PRODUCTIMAGESRC(state, payload) {
+      state.productImageSrc = payload
+    },
     SHOWITEM(state, item) {
       state.showItem = item
     },
@@ -137,10 +191,13 @@ export default new Vuex.Store({
     isLoading: (state) => state.isLoading,
     loadingItem: (state) => state.status.loadingItem,
     product: (state) => state.product,
+    productImageSrc: (state) => state.productImageSrc,
     cart: (state) => state.cart,
     coupon: (state) => state.coupon,
     myFavorite: (state) => state.myFavorite,
     showItem: (state) => state.showItem,
+    productPic: (state) => state.productPic,
+    productPicI: (state) => state.productPicI,
   },
   modules: {
     productsModules,

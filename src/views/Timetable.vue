@@ -39,35 +39,35 @@
                 <th>stage2</th>
               </tr>
               <tr>
-                <td>1330-1420</td>
+                <td>1330</td>
                 <td id="bikini_kill" class="off" @click="changeClassName('#bikini_kill')">bikini kill</td>
                 <td id="side_chick" class="off" @click="changeClassName('#side_chick')">side chick</td>
                 <td>TBC</td>
                 <td>TBC</td>
               </tr>
               <tr>
-                <td>1430-1520</td>
+                <td>1430</td>
                 <td id="tones_and_i" class="off" @click="changeClassName('#tones_and_i')">tones and i</td>
                 <td id="the_strokes" class="off" @click="changeClassName('#the_strokes')">the strokes</td>
                 <td>TBC</td>
                 <td>TBC</td>
               </tr>
               <tr>
-                <td>1530-1620</td>
+                <td>1530</td>
                 <td>TBC</td>
                 <td>TBC</td>
                 <td>TBC</td>
                 <td>TBC</td>
               </tr>
               <tr>
-                <td>1630-1720</td>
+                <td>1630</td>
                 <td>TBC</td>
                 <td>TBC</td>
                 <td>TBC</td>
                 <td>TBC</td>
               </tr>
               <tr>
-                <td>1730-1820</td>
+                <td>1730</td>
                 <td>TBC</td>
                 <td>TBC</td>
                 <td>TBC</td>

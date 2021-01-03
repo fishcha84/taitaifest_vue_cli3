@@ -99,26 +99,24 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-xs col-md-6 col-lg-8 item item2">
-            <img src="@/assets/image/home/keane.jpg" alt="" />
+            <img src="@/assets/image/home/blaze.jpg" alt="" />
           </div>
           <div class="col-xs col-md-6 col-lg-4 item item1">
-            <h3 vertical-align-middle>//ROCK</h3>
+            <h3>//EDM</h3>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-xs col-md-6 col-lg-4 item item3 aic jcc"><h5>#uk</h5></div>
+          <div class="col-xs col-md-6 col-lg-4 item item3 jcc aic"><h5>#fr</h5></div>
           <div class="col-xs col-md-6 col-lg-8 item item4">
-            <h1 style="text-align: center">KEANE</h1>
-
+            <h1 class="jcc">THE BLAZE</h1>
             <h5 class="ellipsis">
-              Keane, a legendary UK band, reunions recently. At this fest, besides a couple of classic songs, they would
-              also perform new songs to make your ears get pregnant.
+              THE BLAZE, a new EDM duo from French, combined zen-like rhyme with talkbox-like vocal ingeniously to
+              confort you in the disturbed world.
             </h5>
-
             <div class="jcc">
               <router-link to="/lineup">
-                <button class="btn">check more detail</button>
+                <button class="btn mb-2">more detail</button>
               </router-link>
             </div>
           </div>
@@ -239,7 +237,7 @@ export default {
 }
 
 .item {
-  height: 200px;
+  max-height: 200px;
 }
 
 .item2 img {
@@ -247,7 +245,9 @@ export default {
   height: 100%;
   object-fit: cover;
 }
-
+.item3 {
+  margin-bottom: 20px;
+}
 .item4 {
   position: relative;
   top: -20px;

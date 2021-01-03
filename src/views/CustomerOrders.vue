@@ -4,6 +4,14 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
+          <div>
+            <Breadcrumb />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
           <div class="tar vendor">
             <router-link tag="rl" to="/shopping/signin"><p>VENDOR OWNERS?>>>THIS WAY PLEASE</p></router-link>
           </div>
@@ -78,7 +86,7 @@
                 <button class="btn btn-outline-secondary productbtn" @click="getProduct(item.id)">
                   <i class="fas fa-cog fa-spin" v-if="loadingItem === item.id"></i>more
                 </button>
-                <button class="btn btn-outline-primary productbtn" @click="addtoCart(item.id, 1)">
+                <button class="btn btn-outline-primary productbtn" @click="addToCart(item.id, 1)">
                   <i class="fas fa-cog fa-spin" v-if="loadingItem === item.id"></i>add to cart
                 </button>
               </div>
@@ -118,7 +126,38 @@
 
           <div class="modal-body">
             <div>
-              <img :src="product.imageUrl" alt="" class="productimg" />
+              <img :src="productImageSrc" alt="" class="productimg" />
+              <div class="jcc">
+                <img
+                  :src="product.imageUrl"
+                  alt=""
+                  @click="changeProductImageSrc('ori')"
+                  style="width: 50px; height: 50px"
+                  class="m-2"
+                />
+
+                <img
+                  :src="productPicI['p1']"
+                  alt=""
+                  @click="changeProductImageSrc('p1')"
+                  style="width: 50px; height: 50px"
+                  class="m-2"
+                />
+                <img
+                  :src="productPicI['p2']"
+                  alt=""
+                  @click="changeProductImageSrc('p2')"
+                  style="width: 50px; height: 50px"
+                  class="m-2"
+                />
+                <img
+                  :src="productPicI['p3']"
+                  alt=""
+                  @click="changeProductImageSrc('p3')"
+                  style="width: 50px; height: 50px"
+                  class="m-2"
+                />
+              </div>
             </div>
 
             <p class="m-2">{{ product.description }}</p>
@@ -130,7 +169,7 @@
           <div class="modal-footer">
             <p>subtotal:{{ (product.price * product.num) | currency }}</p>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
-            <button type="button" class="btn btn-primary" @click="addtoCart(product.id, product.num)">
+            <button type="button" class="btn btn-primary" @click="addToCart(product.id, product.num)">
               add to cart
             </button>
           </div>
@@ -138,7 +177,7 @@
       </div>
     </div>
 
-    <div id="addtocartModal" class="modal" tabindex="-1" role="dialog">
+    <div id="addToCartModal" class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body">
@@ -156,6 +195,7 @@
 </template>
 
 <script>
+import Breadcrumb from '../components/Breadcrumb.vue'
 import { mapGetters, mapActions } from 'vuex'
 import $ from 'jquery'
 
@@ -167,15 +207,35 @@ export default {
       selectedCategory: 'all',
     }
   },
+  components: {
+    Breadcrumb,
+  },
   methods: {
     ...mapActions('productsModules', ['getProducts']),
-    ...mapActions(['updateLoading', 'getProduct', 'addtoCart', 'getCart', 'removeFromMyFavorite', 'addToMyFavorite']),
+    ...mapActions([
+      'updateLoading',
+      'getProduct',
+      'addToCart',
+      'getCart',
+      'removeFromMyFavorite',
+      'addToMyFavorite',
+      'getProductPic',
+    ]),
+
+    getProductPic() {
+      this.$store.dispatch('getProductPic')
+    },
+
+    changeProductImageSrc(p) {
+      this.$store.dispatch('changeProductImageSrc', p)
+    },
+
     getProduct(id) {
       this.$store.dispatch('getProduct', id)
     },
 
-    addtoCart(id, qty) {
-      this.$store.dispatch('addtoCart', { id, qty })
+    addToCart(id, qty) {
+      this.$store.dispatch('addToCart', { id, qty })
     },
     getCart() {
       this.$store.dispatch('getCart')
@@ -192,7 +252,16 @@ export default {
   },
   computed: {
     ...mapGetters('productsModules', ['products']),
-    ...mapGetters(['isLoading', 'loadingItem', 'product', 'cart', 'myFavorite']),
+    ...mapGetters([
+      'isLoading',
+      'loadingItem',
+      'product',
+      'cart',
+      'myFavorite',
+      'productImageSrc',
+      'productPic',
+      'productPicI',
+    ]),
     filteredProducts: function () {
       const vm = this
       if (vm.selectedCategory === 'all') {
@@ -208,6 +277,7 @@ export default {
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
     })
+    this.getProductPic()
   },
   created() {
     this.getProducts()

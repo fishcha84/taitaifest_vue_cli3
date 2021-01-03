@@ -45,15 +45,30 @@
                       <span tag="rl" class="dropdown-toggle" data-toggle="dropdown">Faq</span>
 
                       <div class="dropdown-menu">
-                        <router-link class="rl" tag="rl" to="/faq" @click.native="changeshowItem('showAccommondation')"
+                        <router-link
+                          class="rl"
+                          tag="rl"
+                          to="/faq"
+                          v-scroll-to="'#accommondation'"
+                          @click.native="changeShowItem('showAccommondation')"
                           ><div class="dropdown-item">Accommondation</div>
                         </router-link>
 
-                        <router-link class="rl" tag="rl" to="/faq" @click.native="changeshowItem('showGettingHere')"
+                        <router-link
+                          class="rl"
+                          tag="rl"
+                          to="/faq"
+                          v-scroll-to="'#gettinghere'"
+                          @click.native="changeShowItem('showGettingHere')"
                           ><div class="dropdown-item">Getting Here</div>
                         </router-link>
 
-                        <router-link class="rl" tag="rl" to="/faq" @click.native="changeshowItem('showMap')"
+                        <router-link
+                          class="rl"
+                          tag="rl"
+                          to="/faq"
+                          v-scroll-to="'#map'"
+                          @click.native="changeShowItem('showMap')"
                           ><div class="dropdown-item">Map</div>
                         </router-link>
                         <router-link class="rl" tag="rl" to="/faq" v-scroll-to="'#guestbook'"
@@ -69,23 +84,19 @@
 
           <div class="row">
             <div class="col">
-              <Breadcrumb />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <router-view />
+              <div style="padding-top: 80px">
+                <router-view />
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12 col-lg-4">
-              <p class="footer-title">website guideline:</p>
+        <div class="row">
+          <div class="col-md-12 col-lg-4">
+            <p class="footer-title">website guideline:</p>
+            <div class="glL">
               <div class="footer-content">
                 <div class="container-fluid">
                   <div class="row">
@@ -116,70 +127,101 @@
                 </div>
               </div>
             </div>
-
-            <div class="col-md-12 col-lg-4">
-              <p class="footer-title">subscribe newsletter:</p>
+            <div id="glS">
               <div class="footer-content">
-                <form action="newsletter.php" method="post" name="newsletter">
-                  <input type="email" class="emailinput m-2 w-100" name="useremail" placeholder="your email" d-block />
-                  <input type="submit" class="subscribe m-2 w-100" value="Subscribe!" d-block />
-                </form>
+                <div data-toggle="collapse" data-target="#one" class="footer_title jcsb aic p-2">
+                  <span class="guidelinetitle">what-</span>
+                  <span><i class="fas fa-plus"></i></span>
+                </div>
+                <div id="one" class="collapse" data-parent="#glS">
+                  <ul>
+                    <li><router-link tag="rl" to="/">home</router-link></li>
+                    <li><router-link tag="rl" to="/news">news</router-link></li>
+                  </ul>
+                </div>
+                <div data-toggle="collapse" data-target="#two" class="footer_title jcsb aic p-2">
+                  <span class="guidelinetitle">who-</span>
+                  <span><i class="fas fa-plus"></i></span>
+                </div>
+                <div id="two" class="collapse" data-parent="#glS">
+                  <ul>
+                    <li><router-link tag="rl" to="/lineup">lineup</router-link></li>
+                    <li><router-link tag="rl" to="/timetable">timetable</router-link></li>
+                  </ul>
+                </div>
+                <div data-toggle="collapse" data-target="#three" class="footer_title jcsb aic p-2">
+                  <span class="guidelinetitle">how-</span>
+                  <span><i class="fas fa-plus"></i></span>
+                </div>
+                <div id="three" class="collapse" data-parent="#glS">
+                  <ul>
+                    <li><router-link tag="rl" to="/shopping/customer_orders">shopping</router-link></li>
+                    <li><router-link tag="rl" to="/faq">faq</router-link></li>
+                  </ul>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <p class="footer-title">subscribe newsletter:</p>
+            <div class="footer-content p-2">
+              <form action="newsletter.php" method="post" name="newsletter">
+                <input type="email" class="emailinput my-2 w-100" name="useremail" placeholder="your email" d-block />
+                <input type="submit" class="subscribe my-2 w-100" value="Subscribe!" d-block />
+              </form>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <p class="footer-title">contact us:</p>
+            <div class="footer-content">
+              <a href="mailto:fishcha842@gmail.com">
+                <img class="socialicon" src="@/assets/image/socialicon/unnamed.png" />
+              </a>
 
-            <div class="col-md-12 col-lg-4">
-              <p class="footer-title">contact us:</p>
-              <div class="footer-content">
-                <a href="mailto:fishcha842@gmail.com">
-                  <img class="socialicon" src="@/assets/image/socialicon/unnamed.png" />
-                </a>
+              <img
+                class="socialicon"
+                src="@/assets/image/socialicon/f_logo_RGB-Blue_1024.png"
+                data-toggle="modal"
+                data-target="#exampleModalLong"
+              />
 
-                <img
-                  class="socialicon"
-                  src="@/assets/image/socialicon/f_logo_RGB-Blue_1024.png"
-                  data-toggle="modal"
-                  data-target="#exampleModalLong"
-                />
-
-                <!-- Modal -->
-                <div
-                  class="modal fade"
-                  id="exampleModalLong"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLongTitle"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Sincerely</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body text-left">
-                        <p>
-                          Sorry, we are thinking about not establishing a fb account, since it is full of old people
-                          only.
-                        </p>
-                      </div>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModalLong"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLongTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Sincerely</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body text-left">
+                      <p>
+                        Sorry, we are thinking about not establishing a fb account, since it is full of old people only.
+                      </p>
                     </div>
                   </div>
                 </div>
-
-                <!-- <a href="https://www.instagram.com/?hl=zh-tw">
-                <img class="socialicon" src="@/assets/image/socialicon/instagram.png" />
-              </a> -->
-                <a href="https://www.youtube.com/feed/trending">
-                  <img class="socialicon" src="@/assets/image/socialicon/youtube_social_circle_red.png" />
-                </a>
               </div>
+
+              <a href="https://www.instagram.com/?hl=zh-tw">
+                <img class="socialicon" src="@/assets/image/socialicon/Instagram_AppIcon_Aug2017.png" />
+              </a>
+              <a href="https://www.youtube.com/feed/trending">
+                <img class="socialicon" src="@/assets/image/socialicon/youtube_social_circle_red.png" />
+              </a>
             </div>
           </div>
         </div>
         <hr />
-        <p class="copyright">2020 taitaifest copyright reserved</p>
+        <p class="copyright jcc">2020 taitaifest copyright reserved</p>
       </div>
     </div>
   </div>
@@ -187,14 +229,14 @@
 
 <script>
 import $ from 'jquery'
-import Breadcrumb from './components/Breadcrumb.vue'
+// import Breadcrumb from './components/Breadcrumb.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'App',
-  components: {
-    Breadcrumb,
-  },
+  // components: {
+  //   Breadcrumb,
+  // },
   computed: {
     ...mapGetters(['showItem', 'isLoading']),
   },
@@ -202,11 +244,13 @@ export default {
     return {}
   },
   methods: {
-    ...mapActions(['changeshowItem', 'updateLoading']),
+    ...mapActions(['changeShowItem', 'updateLoading']),
   },
   mounted() {
     $('.rl').on('click', () => {
-      $('.navbar-toggler').click()
+      if ($(window).width() < 992) {
+        $('.navbar-toggler').click()
+      }
     })
   },
 }
@@ -289,7 +333,6 @@ export default {
   padding: 5px;
   border: 2px solid GRAY;
   text-decoration: none;
-  margin: 10px;
 }
 
 .subscribe:hover {
@@ -303,5 +346,17 @@ export default {
   margin: 5px;
   filter: grayscale(100%);
   cursor: pointer;
+}
+
+@media screen and (max-width: 554px) {
+  .glL {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 554px) {
+  #glS {
+    display: none;
+  }
 }
 </style>

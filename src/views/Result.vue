@@ -1,6 +1,11 @@
 <template>
   <div class="result">
     <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <Breadcrumb />
+        </div>
+      </div>
       <div class="row jcc m-2">
         <div class="col-md-6 col-xs-12">
           <table class="w-100">
@@ -24,12 +29,16 @@
 </template>
 
 <script>
+import Breadcrumb from '../components/Breadcrumb.vue'
 export default {
   name: 'Result',
   data() {
     return {
       headliners: [],
     }
+  },
+  components: {
+    Breadcrumb,
   },
   created() {
     this.$axios.get('https://fishcha842.000webhostapp.com/headliners.php').then((response) => {

@@ -4,6 +4,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
+          <Breadcrumb />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
           <table class="carttable">
             <thead>
               <tr>
@@ -17,12 +22,21 @@
             <tbody>
               <tr v-for="item in cart.carts" :key="item.id">
                 <td>
-                  <button class="btn btn-sm btn-outline-danger" @click="removeCartItem(item.id)">
+                  <span style="color: red" @click="removeCartItem(item.id)">
                     <i class="fas fa-trash-alt"></i>
-                  </button>
+                  </span>
                 </td>
                 <td>{{ item.product.title }}</td>
-                <td>{{ item.qty }}/{{ item.product.unit }}</td>
+                <td>
+                  <span @click="changeQty(item, -1)" :disabled="item.qty === 1">
+                    <i class="far fa-minus-square"></i>
+                  </span>
+                  {{ item.qty }}
+                  /{{ item.product.unit }}
+                  <span @click="changeQty(item, 1)" :disabled="item.qty >= 4">
+                    <i class="far fa-plus-square"></i>
+                  </span>
+                </td>
                 <td>{{ item.product.price | currency }}</td>
                 <td>{{ Math.round(item.final_total) | currency }}</td>
               </tr>
@@ -44,7 +58,7 @@
       <!-- coupon -->
 
       <div class="row m-2 jcc">
-        <div class="col-md-12 col-lg-6">
+        <div class="col-sm-12 col-md-6">
           <form action="" @click.prevent="useCoupon(coupon)">
             <label for="coupon">coupon:</label>
             <div class="input-group mb-3">
@@ -67,7 +81,7 @@
 
       <!-- user form validation -->
       <div class="row m-2 jcc">
-        <validation-observer class="col-6" v-slot="{ invalid, handleSubmit }">
+        <validation-observer class="col-sm-12 col-md-6" v-slot="{ invalid, handleSubmit }">
           <form @submit.prevent="handleSubmit(createOrder)">
             <validation-provider rules="required" v-slot="{ errors, classes }">
               <div class="form-group">
@@ -152,6 +166,7 @@
 </template>
 
 <script>
+import Breadcrumb from '../components/Breadcrumb.vue'
 import $ from 'jquery'
 import { mapActions, mapGetters } from 'vuex'
 
@@ -168,7 +183,12 @@ export default {
         },
         message: '',
       },
+      num: null,
+      product_id: '',
     }
+  },
+  components: {
+    Breadcrumb,
   },
   methods: {
     ...mapActions(['getCart']),
@@ -198,6 +218,15 @@ export default {
           this.$router.push({ path: '/shopping/customer_orders' })
         }, 1500)
       }
+    },
+    changeQty(item, click) {
+      this.num += click
+      this.product_id = item.product_id
+      this.addToCart(this.product_id, this.num)
+    },
+    addToCart(id, qty = 1) {
+      this.$store.dispatch('addToCart', { id, qty })
+      this.num = null
     },
   },
   computed: {

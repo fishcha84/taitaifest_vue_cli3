@@ -1,7 +1,3 @@
-a:hover {
-  text-decoration: none;
-}
-
 @media screen and (max-width: 480px) {
   .shortnewsimg {
     height: 150px;
@@ -11,7 +7,6 @@ a:hover {
 .shortnewsdiv {
   margin: 10px;
   border: none;
-  /* border: 1px solid hotpink; */
 }
 
 .nd1 {
@@ -173,6 +168,7 @@ li rl2:active {
   left: 46%;
 }
 
+#glS ul li rl,
 .headliners_list ul li {
   list-style: none;
 }
@@ -197,8 +193,15 @@ li rl2:active {
 }
 
 .login input,
-p {
+.login p {
   margin: 10px;
+}
+
+.day1 {
+  margin-left: auto;
+}
+.day2 {
+  margin-right: auto;
 }
 
 table th {
@@ -214,13 +217,6 @@ td {
   border: 1px solid hotpink;
   text-align: center;
   vertical-align: middle;
-}
-
-.day1 {
-  margin-left: auto;
-}
-.day2 {
-  margin-right: auto;
 }
 
 .timetabletable tr th,
@@ -288,6 +284,15 @@ td {
 .jcsb {
   display: flex;
   justify-content: space-between;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.jcsa {
+  display: flex;
+  justify-content: space-around;
 }
 
 .jcc {
