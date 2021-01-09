@@ -21,12 +21,11 @@ import 'bootstrap'
 
 import App from './App.vue'
 import router from './router/index.js'
-import './bus'
+// import './bus'
 import store from './store/index.js'
 
 import currencyFilter from './filters/currency.js'
 import dateFilter from './filters/date.js'
-
 Vue.filter('currency', currencyFilter)
 Vue.filter('date', dateFilter)
 

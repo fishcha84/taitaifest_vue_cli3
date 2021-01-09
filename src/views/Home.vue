@@ -17,9 +17,9 @@
                 <img class="c1" src="@/assets/image/carousel/1.jpg" alt="glastonbury" />
                 <div class="carousel-caption cc">
                   <h1>ENDLESS GRASS</h1>
-                  <h5>wherever you felt tired at, just sit down</h5>
+                  <h5>Wherever you felt tired at, just sit down.</h5>
                   <router-link to="/shopping/customer_orders">
-                    <button class="btn">TICKETS ON SALE NOW >>></button>
+                    <button class="btn btn-outline-primary">TICKETS ON SALE NOW >>></button>
                   </router-link>
                 </div>
               </div>
@@ -28,7 +28,7 @@
                 <img class="c2" src="@/assets/image/carousel/2.jpg" alt="pyramid" />
                 <div class="carousel-caption cc">
                   <h1>FEATURED STAGES</h1>
-                  <h5>every stage is well-designed</h5>
+                  <h5>Every stage is well-designed.</h5>
                   <router-link to="/shopping/customer_orders">
                     <button class="btn">TICKETS ON SALE NOW >>></button>
                   </router-link>
@@ -39,7 +39,7 @@
                 <img class="c3" src="@/assets/image/carousel/3.jpg" alt="keane" />
                 <div class="carousel-caption cc">
                   <h1>UP2U LINEUP</h1>
-                  <h5>your headliners, you decide!</h5>
+                  <h5>Your headliners, you decide!</h5>
                   <router-link to="/shopping/customer_orders">
                     <button class="btn">TICKETS ON SALE NOW >>></button>
                   </router-link>
@@ -49,8 +49,8 @@
               <div class="carousel-item">
                 <img class="c4" src="@/assets/image/carousel/4.jpg" alt="fun" />
                 <div class="carousel-caption cc">
-                  <h1>letIOUS ACTIVITIES</h1>
-                  <h5>you won't feel bored</h5>
+                  <h1>VARIOUS ACTIVITIES</h1>
+                  <h5>You won't feel bored.</h5>
                   <router-link to="/shopping/customer_orders">
                     <button class="btn">TICKETS ON SALE NOW >>></button>
                   </router-link>
@@ -61,7 +61,7 @@
                 <img class="c5" src="@/assets/image/carousel/5.jpg" alt="food" />
                 <div class="carousel-caption cc">
                   <h1>EXOTIC FOOD</h1>
-                  <h5>travel around the world through food</h5>
+                  <h5>Travel around the world through food.</h5>
                   <router-link to="/shopping/customer_orders">
                     <button class="btn">TICKETS ON SALE NOW >>></button>
                   </router-link>
@@ -88,37 +88,35 @@
         <div class="col">
           <router-link tag="rl" to="/lineup">
             <h3 class="newartisttitle" style="color: hotpink">
-              new artist released<i class="fas fa-angle-double-right"></i>
+              New artist released<i class="fas fa-angle-double-right"></i>
             </h3>
           </router-link>
         </div>
       </div>
     </div>
 
-    <div class="container">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs col-md-6 col-lg-8 item item2">
-            <img src="@/assets/image/home/blaze.jpg" alt="" />
-          </div>
-          <div class="col-xs col-md-6 col-lg-4 item item1">
-            <h3>//EDM</h3>
-          </div>
+    <div class="container-fluid pointer" @click="toLineup">
+      <div class="row">
+        <div class="col-xs col-md-6 col-lg-8 item item2">
+          <img src="@/assets/image/home/blaze.jpg" alt="" />
         </div>
+        <div class="col-xs col-md-6 col-lg-4 item item1">
+          <h3>//EDM</h3>
+        </div>
+      </div>
 
-        <div class="row">
-          <div class="col-xs col-md-6 col-lg-4 item item3 jcc aic"><h5>#fr</h5></div>
-          <div class="col-xs col-md-6 col-lg-8 item item4">
-            <h1 class="jcc">THE BLAZE</h1>
-            <h5 class="ellipsis">
-              THE BLAZE, a new EDM duo from French, combined zen-like rhyme with talkbox-like vocal ingeniously to
-              confort you in the disturbed world.
-            </h5>
-            <div class="jcc">
-              <router-link to="/lineup">
-                <button class="btn mb-2">more detail</button>
-              </router-link>
-            </div>
+      <div class="row">
+        <div class="col-xs col-md-6 col-lg-4 item item3 jcc aic"><h5>#fr</h5></div>
+        <div class="col-xs col-md-6 col-lg-8 item item4">
+          <h1 class="jcc">THE BLAZE</h1>
+          <h5 class="ellipsis">
+            The BlazeLAE, a new EDM duo from Frence, combines zen-like rhyme with talkbox-like vocal ingeniously to
+            confort you in the disturbed world.
+          </h5>
+          <div class="jcc">
+            <router-link to="/lineup">
+              <button class="btn mb-2">more detail</button>
+            </router-link>
           </div>
         </div>
       </div>
@@ -131,7 +129,7 @@
         <div class="col">
           <router-link tag="rl" to="/shopping/customer-orders">
             <h3 class="coupontitle" style="color: hotpink">
-              <i class="fas fa-angle-double-left"></i>up-to-date coupon
+              <i class="fas fa-angle-double-left"></i>Up-to-date coupon
             </h3>
           </router-link>
         </div>
@@ -179,7 +177,7 @@
       <div class="row">
         <div class="col">
           <router-link tag="rl" to="/news">
-            <h3 class="newstitle" style="color: hotpink">news<i class="fas fa-angle-double-right"></i></h3>
+            <h3 class="newstitle" style="color: hotpink">News<i class="fas fa-angle-double-right"></i></h3>
           </router-link>
         </div>
       </div>
@@ -221,10 +219,18 @@ export default {
   components: {
     NewsComponent,
   },
+  methods: {
+    toLineup() {
+      this.$router.push('/lineup')
+    },
+  },
 }
 </script>
 
 <style scoped>
+.pointer:hover {
+  cursor: pointer;
+}
 .newartisttitle:hover,
 .newstitle:hover {
   text-decoration: none;
@@ -255,14 +261,15 @@ export default {
 }
 
 .cc {
+  background: #d3d3d3a3;
   text-align: left;
+  padding: 20px;
+  width: 300px;
 }
 
 .cc h1,
 .cc h5 {
   color: white;
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: gray;
 }
 
 .carousel-item img {
@@ -277,9 +284,11 @@ export default {
 
 .cc button,
 .item4 button {
-  color: hotpink;
+  /* background: hotpink;
+  color: white; */
   border: 2px solid hotpink;
-  font-style: bold;
+  color: hotpink;
+  font: bold;
 }
 
 .cc button:hover,

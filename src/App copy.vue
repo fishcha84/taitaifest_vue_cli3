@@ -49,7 +49,7 @@
                           class="rl"
                           tag="rl"
                           to="/faq"
-                          v-scroll-to="'#accommondation'"
+                          v-scroll-to="'/faq/#accommondation'"
                           @click.native="changeShowItem('showAccommondation')"
                           ><div class="dropdown-item">Accommondation</div>
                         </router-link>

@@ -90,16 +90,15 @@ export default {
       this.showContentItem = {}
     },
   },
-  mounted() {
+  created() {
     this.$http.get('news.json').then((response) => {
       this.news = response.data
     })
+  },
+  mounted() {
     let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-    $(function () {
-      $('[data-toggle="popover"]').popover()
     })
   },
 }

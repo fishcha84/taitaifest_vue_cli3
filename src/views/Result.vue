@@ -40,7 +40,16 @@ export default {
   components: {
     Breadcrumb,
   },
+  methods: {
+    // getHeadliners() {
+    //   const vm = this
+    //   vm.$axios.get('https://fishcha842.000webhostapp.com/headliners.php').then((response) => {
+    //     vm.headliners = response.data
+    //   })
+    // },
+  },
   created() {
+    // this.getHeadliners
     this.$axios.get('https://fishcha842.000webhostapp.com/headliners.php').then((response) => {
       this.headliners = response.data
     })

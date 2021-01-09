@@ -1,34 +1,34 @@
 [
   {
-    "imgUrl":"image/lineup/bikini_kill.jpeg",
-    "artist":"bikini kill",
-    "introduction":"classic female punk.They reunion recently.",
+    "imgUrl": "image/lineup/bikini_kill.jpeg",
+    "artist": "Bikini Kill",
+    "introduction": "CLASSIC FEMALE PUNK. They reunion recently.",
     "musicVideoUrl": "https://www.youtube.com/watch?v=bOCWma5vOiQ",
     "musicVideoName": "Rebel Girl",
-    "genre":"punk"
+    "genre": "Punk"
   },
   {
     "imgUrl": "image/lineup/side_chick.jpeg",
-    "artist": "side chick",
-    "introduction": "spainish trio.They meet each other on a social media app!",
+    "artist": "Side Chick",
+    "introduction": "SPAINISH TRIO. They meet each other on a social media app!",
     "musicVideoUrl": "https://www.youtube.com/watch?v=LMb4GQpiqlU",
     "musicVideoName": "My Love for You",
-    "genre": "punk"
+    "genre": "Punk"
   },
   {
     "imgUrl": "image/lineup/tones_and_i.jpg",
-    "artist": "tones and i",
-    "introduction": "viral australian singer.The song <dance monkey> tops the chart for lots of weeks!",
+    "artist": "Tones and I",
+    "introduction": "VIRAL AUSTRALIAN SINGER. The song <dance monkey> tops the chart for lots of weeks!",
     "musicVideoUrl": "https://www.youtube.com/watch?v=q0hyYWKXF0Q",
     "musicVideoName": "Dance Monkey",
-    "genre": "pop"
+    "genre": "Pop"
   },
   {
-    "imgUrl":"image/lineup/the_strokes.jpeg",
-    "artist":"the strokes",
-    "introduction":"a ny band from 90s.They have lots of hot songs!",
-    "musicVideoUrl":"https://www.youtube.com/watch?v=pT68FS3YbQ4",
-    "musicVideoName":"You Only Live Once",
-    "genre":"rock"
+    "imgUrl": "image/lineup/the_strokes.jpeg",
+    "artist": "The Strokes",
+    "introduction": "A NY BAND from 90s. They have lots of hot songs!",
+    "musicVideoUrl": "https://www.youtube.com/watch?v=pT68FS3YbQ4",
+    "musicVideoName": "You Only Live Once",
+    "genre": "Rock"
   }
 ]

@@ -26,7 +26,7 @@
     echo "<script>
     alert('it is already on the list!'); 
     </script>";
-    header("Refresh:3; url=https://fishcha842.000webhostapp.com/#/fountain_headliners/vote_or_make_a_wish");
+    // header("Refresh:3; url=https://fishcha842.000webhostapp.com/#/fountain_headliners/vote_or_make_a_wish");
   }
   $mysqli->close();
     

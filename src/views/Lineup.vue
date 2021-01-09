@@ -63,14 +63,14 @@
                 class="pb progress-bar bg-warning progress-bar-striped progress-bar-animated"
                 v-bind:style="{ width: progresslength + '%' }"
               >
-                {{ progresslength }}% lineup relased
+                {{ progresslength }}% lineup released
               </div>
             </div>
           </div>
 
-          <div class="row">
+          <div class="row py-2">
             <div class="col">
-              <h5 class="text-center">see who would perform at the fest by genre</h5>
+              <h5 class="text-center">See who would perform at the fest by genre</h5>
               <div class="form-group">
                 <select class="form-control" v-model="selectedGenre">
                   <option v-for="(genre, key) in genres" :key="key" :value="genre">{{ genre }}</option>
@@ -106,8 +106,8 @@ export default {
     return {
       progresslength: 0,
       posts: [],
-      genres: ['all', 'pop', 'rock', 'punk'],
-      selectedGenre: 'all',
+      genres: ['All', 'Pop', 'Rock', 'Punk'],
+      selectedGenre: 'All',
       headliners: [],
       voteforartist: [],
       recommendartist: { artist: '' },
@@ -122,37 +122,37 @@ export default {
         vm.progresslength = (vm.posts.length / 20) * 100
       })
     },
-    getheadliners() {
+    getHeadliners() {
       this.$axios.get('https://fishcha842.000webhostapp.com/headliners.php').then((response) => {
         this.headliners = response.data
       })
     },
-    toFormData(obj) {
-      let fd = new FormData()
-      for (let i in obj) {
-        fd.append(i, obj[i])
-      }
-      return fd
-    },
+    // toFormData(obj) {
+    //   let fd = new FormData()
+    //   for (let i in obj) {
+    //     fd.append(i, obj[i])
+    //   }
+    //   return fd
+    // },
 
-    vote() {
-      let fd = this.toFormData(this.voteforartist)
-      this.$axios.post('https://fishcha842.000webhostapp.com/vote.php', fd).then((response) => {})
-    },
+    // vote() {
+    //   let fd = this.toFormData(this.voteforartist)
+    //   this.$axios.post('https://fishcha842.000webhostapp.com/vote.php', fd).then((response) => {})
+    // },
 
-    recommend() {
-      let fd = this.toFormData(this.recommendartist)
-      this.$axios.post('https://fishcha842.000webhostapp.com/recommend.php', fd).then((response) => {
-        this.recommendartist = { artist: '' }
-      })
-    },
+    // recommend() {
+    //   let fd = this.toFormData(this.recommendartist)
+    //   this.$axios.post('https://fishcha842.000webhostapp.com/recommend.php', fd).then((response) => {
+    //     this.recommendartist = { artist: '' }
+    //   })
+    // },
   },
 
   computed: {
     filteredPosts() {
       const vm = this
       const selectedGenre = vm.selectedGenre
-      if (selectedGenre === 'all') {
+      if (selectedGenre === 'All') {
         return vm.posts
       } else {
         return vm.posts.filter((post) => {
@@ -163,7 +163,7 @@ export default {
   },
 
   created() {
-    this.getheadliners()
+    this.getHeadliners()
     this.getPosts()
   },
 }
