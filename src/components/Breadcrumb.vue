@@ -49,16 +49,16 @@ ul {
 }
 li {
   cursor: pointer;
-  color: pink;
+  color: hotpink;
 }
 li:hover {
-  color: hotpink;
+  color: midnightblue;
 }
 li:last-child {
   cursor: default;
 }
 li:last-child:hover {
-  color: pink;
+  color: hotpink;
 }
 
 li:not(:last-child):after {

@@ -1,6 +1,6 @@
 <template>
   <div id="signin">
-    <h1 class="tac" style="color: pink">Vendor Owners ONLY</h1>
+    <h1 class="tac" style="color: red">Vendor Owners ONLY</h1>
     <form class="form-signin" @submit.prevent="signin">
       <div class="form-group">
         <label for="inputEmail">Email address</label>

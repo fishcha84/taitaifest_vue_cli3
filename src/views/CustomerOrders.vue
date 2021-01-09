@@ -287,6 +287,23 @@ export default {
 </script>
 
 <style scoped>
+.vendor,
+.check,
+.favorite {
+  color: midnightblue;
+}
+
+.vendor:hover,
+.vendor:active,
+.check:hover,
+.check:active,
+.favorite:hover,
+.favorite.active {
+  cursor: pointer;
+  text-decoration: none;
+  color: hotpink;
+}
+
 .categorybtns {
   display: table;
   margin: 0 auto;
@@ -296,6 +313,43 @@ export default {
   border-radius: 20px;
   margin: 10px;
   min-width: 100px;
+}
+
+.productcard {
+  height: 480px;
+}
+
+.productcard:hover {
+  cursor: pointer;
+}
+
+.productimg {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.producttitleandprice,
+.productbtns {
+  height: 80px;
+}
+
+.productdescription {
+  height: 60px;
+}
+
+.producttitle {
+  color: pink;
+}
+
+.productprice {
+  color: hotpink;
+}
+
+.productbtn {
+  width: 45%;
+  max-height: 50px;
+  overflow: hidden;
 }
 
 .modal-image {

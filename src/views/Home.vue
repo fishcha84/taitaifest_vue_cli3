@@ -12,19 +12,19 @@
               <li data-target="#carouselarea" data-slide-to="4"></li>
             </ol>
 
-            <div class="carousel-inner">
+            <div class="carousel-inner aic">
               <div class="carousel-item active">
                 <img class="c1" src="@/assets/image/carousel/1.jpg" alt="glastonbury" />
                 <div class="carousel-caption cc">
                   <h1>ENDLESS GRASS</h1>
                   <h5>Wherever you felt tired at, just sit down.</h5>
                   <router-link to="/shopping/customer_orders">
-                    <button class="btn btn-outline-primary">TICKETS ON SALE NOW >>></button>
+                    <button class="btn">TICKETS ON SALE NOW >>></button>
                   </router-link>
                 </div>
               </div>
 
-              <div class="carousel-item">
+              <div class="carousel-item aic">
                 <img class="c2" src="@/assets/image/carousel/2.jpg" alt="pyramid" />
                 <div class="carousel-caption cc">
                   <h1>FEATURED STAGES</h1>
@@ -110,12 +110,12 @@
         <div class="col-xs col-md-6 col-lg-8 item item4">
           <h1 class="jcc">THE BLAZE</h1>
           <h5 class="ellipsis">
-            The BlazeLAE, a new EDM duo from Frence, combines zen-like rhyme with talkbox-like vocal ingeniously to
-            confort you in the disturbed world.
+            The Blaze, a new EDM duo from Frence, combines zen-like rhyme with talkbox-like vocal ingeniously to confort
+            you in the disturbed world.
           </h5>
           <div class="jcc">
             <router-link to="/lineup">
-              <button class="btn mb-2">more detail</button>
+              <input class="btn btn-outline-secondary mb-2" value="more detail" />
             </router-link>
           </div>
         </div>
@@ -187,8 +187,10 @@
       <div class="row">
         <div class="col-xs-12 col-md-6 col-lg-8">
           <NewsComponent class="m-2"></NewsComponent>
-          <div id="morenews">
-            <router-link id="morenews" to="/news" style="text-aling: right">more...</router-link>
+          <div class="tar">
+            <router-link id="morenews" to="/news" style="text-aling: right; color: hotpink; margin: 10px"
+              >more...</router-link
+            >
           </div>
         </div>
 
@@ -258,18 +260,30 @@ export default {
   position: relative;
   top: -20px;
   background-color: pink;
+  color: midnightblue;
+}
+
+.carousel-caption {
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .cc {
-  background: #d3d3d3a3;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: initial;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  background: #191970c3;
   text-align: left;
   padding: 20px;
-  width: 300px;
+  max-width: 500px;
 }
 
 .cc h1,
 .cc h5 {
-  color: white;
+  color: hotpink;
 }
 
 .carousel-item img {
@@ -282,13 +296,10 @@ export default {
   height: 400px;
 }
 
-.cc button,
-.item4 button {
-  /* background: hotpink;
-  color: white; */
+.cc button {
   border: 2px solid hotpink;
   color: hotpink;
-  font: bold;
+  font-weight: bold;
 }
 
 .cc button:hover,

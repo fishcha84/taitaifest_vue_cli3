@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <br />
-          <h3 style="color: gray">new released after movie</h3>
+          <h3 style="color: midnightblue">new released after movie</h3>
           <hr style="border: 3px solid hotpink; width: 100px" align="left" />
         </div>
       </div>
@@ -25,7 +25,7 @@
       <div class="row">
         <div class="col">
           <br />
-          <h3 style="color: gray">latest news</h3>
+          <h3 style="color: midnightblue">latest news</h3>
           <hr style="border: 3px solid hotpink; width: 100px" align="left" />
         </div>
       </div>
@@ -39,7 +39,7 @@
       <div class="row">
         <div class="col">
           <br />
-          <h3 style="color: gray">live gallery</h3>
+          <h3 style="color: midnightblue">live gallery</h3>
           <hr style="border: 3px solid hotpink; width: 100px" align="left" />
         </div>
       </div>

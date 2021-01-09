@@ -80,7 +80,7 @@
 
       <div class="row jcc">
         <div class="col jcc m-2">
-          <button class="btn btn-outline-primary" id="capturebtn" @click="save()">Save your timetable</button>
+          <input class="btn btn-outline-primary" @click="save()" value="Save your timetable" />
         </div>
       </div>
     </div>
@@ -113,5 +113,10 @@ export default {
 <style>
 .on {
   background-color: lightyellow;
+}
+
+.timetabletable tr th,
+.timetabletable tr td {
+  height: 10px;
 }
 </style>

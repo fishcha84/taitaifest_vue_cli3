@@ -70,7 +70,7 @@
 
           <div class="row py-2">
             <div class="col">
-              <h5 class="text-center">See who would perform at the fest by genre</h5>
+              <h5 class="tac" style="color: midnightblue">See who would perform at the fest by genre</h5>
               <div class="form-group">
                 <select class="form-control" v-model="selectedGenre">
                   <option v-for="(genre, key) in genres" :key="key" :value="genre">{{ genre }}</option>
@@ -170,6 +170,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fountainheadlinerstitle {
+  color: hotpink;
+}
+.headliners_list {
+  text-align: left;
+  position: relative;
+  left: 46%;
+}
+
+#glS ul li rl,
+.headliners_list ul li {
+  list-style: none;
+}
+
+#wish {
+  margin-bottom: 10px;
+}
+
 .card {
   height: 450px;
 }

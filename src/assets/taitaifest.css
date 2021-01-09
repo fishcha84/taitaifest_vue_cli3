@@ -1,157 +1,58 @@
-@media screen and (max-width: 480px) {
-  .shortnewsimg {
-    height: 150px;
-  }
+.tac {
+  text-align: center;
 }
 
-.shortnewsdiv {
-  margin: 10px;
-  border: none;
-}
-
-.nd1 {
-  height: 150px;
-  float: left;
-  border: none;
-}
-
-.nd2 {
-  height: 100px;
-  line-height: 100px;
-  border: none;
-  display: inline-block;
-}
-
-.nd3 {
-  height: 50px;
-  line-height: 50px;
-  border: none;
-  display: inline-block;
-}
-
-.ellipsis {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  white-space: normal;
-}
-
-.shortnewsdiv:hover {
-  cursor: pointer;
-}
-
-.shortnewsimg {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.shortnewstitle {
-  vertical-align: middle;
-  line-height: 1em;
-  color: pink;
-}
-
-.shortnewsdate {
-  color: gray;
-}
-
-#morenews {
+.tar {
   text-align: right;
-  margin: 10px;
 }
 
-.newstitle {
-  color: pink;
-  vertical-align: top;
+.jcc {
+  display: flex;
+  justify-content: center;
 }
 
-.newsdate {
-  color: gray;
+.jcr {
+  display: flex;
+  justify-content: right;
 }
 
-.newsimg {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
+.jcsb {
+  display: flex;
+  justify-content: space-between;
 }
 
-.productcard {
-  height: 480px;
-}
-
-.productcard:hover {
-  cursor: pointer;
-}
-
-.productimg {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.producttitleandprice,
-.productbtns {
-  height: 80px;
-}
-
-.productdescription {
-  height: 60px;
-}
-
-.producttitle {
-  color: pink;
-}
-
-.productprice {
-  color: hotpink;
-}
-
-.productbtn {
+.jcsbbtn {
+  display: flex;
+  justify-content: space-between;
   width: 45%;
-  max-height: 50px;
-  overflow: hidden;
+  padding: 10px;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  text-align: left;
+.jcsa {
+  display: flex;
+  justify-content: space-around;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+.aic {
+  display: flex;
+  align-items: center;
 }
 
-.dropdown-content span {
-  display: block;
-  margin: 5px;
-}
-
-form rl,
-li rl,
-li span {
-  color: gray;
-  height: 50px;
-  line-height: 50px;
-}
-
-form rl:hover,
-form rl:active,
-li rl:hover,
-li rl:active,
-li rl2:hover,
-li rl2:active {
-  color: hotpink;
-  cursor: pointer;
+a:hover {
   text-decoration: none;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid hotpink;
+}
+
+input.success {
+  border: 2px solid green;
+}
+
+input .error {
+  border: 2px solid red;
 }
 
 .breadcrumb {
@@ -159,49 +60,8 @@ li rl2:active {
   line-height: 20px;
 }
 
-.fountainheadlinerstitle {
-  color: hotpink;
-}
-.headliners_list {
-  text-align: left;
-  position: relative;
-  left: 46%;
-}
-
-#glS ul li rl,
-.headliners_list ul li {
-  list-style: none;
-}
-
-#wish {
-  margin-bottom: 10px;
-}
-
-.map {
-  width: 100%;
-  height: 500px;
-  border: 0;
-}
-
-.img-responsive {
-  width: 100%;
-  height: 100%;
-}
-
 .card {
   margin: 10px;
-}
-
-.login input,
-.login p {
-  margin: 10px;
-}
-
-.day1 {
-  margin-left: auto;
-}
-.day2 {
-  margin-right: auto;
 }
 
 table th {
@@ -219,46 +79,24 @@ td {
   vertical-align: middle;
 }
 
-.timetabletable tr th,
-.timetabletable tr td {
-  height: 10px;
+.login input,
+.login p {
+  margin: 10px;
+}
+
+.day1 {
+  margin-left: auto;
+}
+.day2 {
+  margin-right: auto;
 }
 
 .table-hover tr:hover td {
   background-color: lightyellow;
 }
 
-.tac {
-  text-align: center;
-}
-
-.tar {
-  text-align: right;
-}
-
 .vam {
   vertical-align: middle;
-}
-
-.vendor,
-.check,
-.favorite,
-.faqbtn {
-  color: pink;
-  margin: 10px;
-}
-
-.vendor:hover,
-.vendor:active,
-.check:hover,
-.check:active,
-.favorite:hover,
-.favorite.active,
-.faqbtn:hover,
-.faqbtn:active {
-  cursor: pointer;
-  text-decoration: none;
-  color: hotpink;
 }
 
 .carttable,
@@ -279,54 +117,4 @@ td {
 
 .ordertd1 {
   background-color: pink;
-}
-
-.jcsb {
-  display: flex;
-  justify-content: space-between;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-.jcsa {
-  display: flex;
-  justify-content: space-around;
-}
-
-.jcc {
-  display: flex;
-  justify-content: center;
-}
-
-.aic {
-  display: flex;
-  align-items: center;
-}
-
-.jcr {
-  display: flex;
-  justify-content: right;
-}
-
-.jcsbbtn {
-  display: flex;
-  justify-content: space-between;
-  width: 50%;
-  padding: 10px;
-}
-
-input:focus {
-  outline: none;
-  /* color: hotpink; */
-  border: 2px solid hotpink;
-}
-
-input.success {
-  border: 2px solid green;
-}
-
-input .error {
-  border: 2px solid red;
 }

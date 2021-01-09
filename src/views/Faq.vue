@@ -138,7 +138,7 @@
         <div class="col-xs-12 col-md-6">
           <form action="post.php" method="post">
             <div class="form-group text-center">
-              <p>Please leave your message here</p>
+              <h5 style="color: midnightblue">Please leave your message here, then it would be shown on the left.</h5>
             </div>
             <div class="form-group">
               <label for="author">Author:</label>
@@ -244,3 +244,25 @@ export default {
   },
 }
 </script>
+
+<style>
+.faqbtn {
+  color: midnightblue;
+}
+.faqbtn:hover,
+.faqbtn:active {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.map {
+  width: 100%;
+  height: 500px;
+  border: 0;
+}
+
+.img-responsive {
+  width: 100%;
+  height: 100%;
+}
+</style>

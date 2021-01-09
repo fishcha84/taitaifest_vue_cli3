@@ -32,17 +32,19 @@
 
                 <div class="collapse navbar-collapse" id="navbarContent">
                   <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><router-link class="rl" tag="rl" to="/news">News</router-link> |</li>
+                    <li class="nav-item"><router-link class="rl" tag="rl" to="/news"> News </router-link>|</li>
 
-                    <li class="nav-item"><router-link class="rl" tag="rl" to="/lineup">Lineup</router-link> |</li>
-                    <li class="nav-item"><router-link class="rl" tag="rl" to="/timetable">Timetable</router-link> |</li>
+                    <li class="nav-item"><router-link class="rl" tag="rl" to="/lineup"> Lineup </router-link> |</li>
+                    <li class="nav-item">
+                      <router-link class="rl" tag="rl" to="/timetable"> Timetable </router-link> |
+                    </li>
 
                     <li class="nav-item">
-                      <router-link class="rl" tag="rl" to="/shopping/customer_orders">Shopping</router-link> |
+                      <router-link class="rl" tag="rl" to="/shopping/customer_orders"> Shopping </router-link> |
                     </li>
 
                     <li class="nav-item dropdown">
-                      <span tag="rl" class="dropdown-toggle" data-toggle="dropdown">Faq</span>
+                      <span tag="rl" class="dropdown-toggle" data-toggle="dropdown"> Faq </span>
 
                       <div class="dropdown-menu">
                         <router-link
@@ -103,24 +105,24 @@
                     <div class="col-xs-12 col-md-4">
                       <ul>
                         <li class="guidelinetitle">what-</li>
-                        <li><router-link tag="rl" to="/">home</router-link></li>
-                        <li><router-link tag="rl" to="/news">news</router-link></li>
+                        <li><router-link class="rl" tag="rl" to="/">home</router-link></li>
+                        <li><router-link class="rl" tag="rl" to="/news">news</router-link></li>
                       </ul>
                     </div>
 
                     <div class="col-xs-12 col-md-4">
                       <ul>
                         <li class="guidelinetitle">who-</li>
-                        <li><router-link tag="rl" to="/lineup">lineup</router-link></li>
-                        <li><router-link tag="rl" to="/timetable">timetable</router-link></li>
+                        <li><router-link class="rl" tag="rl" to="/lineup">lineup</router-link></li>
+                        <li><router-link class="rl" tag="rl" to="/timetable">timetable</router-link></li>
                       </ul>
                     </div>
 
                     <div class="col-xs-12 col-md-4">
                       <ul>
                         <li class="guidelinetitle">how-</li>
-                        <li><router-link tag="rl" to="/shopping/customer_orders">shopping</router-link></li>
-                        <li><router-link tag="rl" to="/faq">faq</router-link></li>
+                        <li><router-link class="rl" tag="rl" to="/shopping/customer_orders">shopping</router-link></li>
+                        <li><router-link class="rl" tag="rl" to="/faq">faq</router-link></li>
                       </ul>
                     </div>
                   </div>
@@ -222,6 +224,9 @@
         </div>
         <hr />
         <p class="copyright jcc">2020 taitaifest copyright reserved</p>
+        <p class="github">
+          <a href="https://github.com/fishcha84/taitaifest_vue_cli3"> github</a>
+        </p>
       </div>
     </div>
   </div>
@@ -250,10 +255,6 @@ export default {
     $(function () {
       $('[data-toggle="popover"]').popover()
     })
-    // let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-    // let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-    //   return new bootstrap.Popover(popoverTriggerEl)
-    // })
 
     $('.rl').on('click', () => {
       if ($(window).width() < 992) {
@@ -268,15 +269,6 @@ export default {
 @import './assets/all';
 @import './assets/taitaifest.css';
 
-.rl a {
-  color: black;
-}
-
-.rl a :hover,
-.rl a :active {
-  text-decoration: none;
-}
-
 #app {
   max-width: 100%;
   overflow-x: hidden;
@@ -286,6 +278,45 @@ export default {
 
   display: flex;
   flex-direction: column;
+}
+
+li .rl,
+li span {
+  color: hotpink;
+}
+
+li .rl:hover,
+li span:hover {
+  color: midnightblue;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: midnightblue;
+  color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content span {
+  display: block;
+  margin: 5px;
 }
 
 .sticky-foot {
@@ -298,11 +329,17 @@ export default {
   flex: 1;
 }
 
-.footer {
+.footer,
+.footer-content li .rl {
   background-color: pink;
   width: 100%;
-  color: gray;
+  color: midnightblue;
   text-align: center;
+}
+
+.footer-content li .rl:hover {
+  cursor: pointer;
+  color: white;
 }
 
 .footer-title,
@@ -324,7 +361,7 @@ export default {
 
 .emailinput {
   padding: 5px 15px;
-  border: 2px gray solid;
+  border: 2px solid midnightblue;
   cursor: pointer;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -334,17 +371,31 @@ export default {
   -webkit-border-radius: 10;
   -moz-border-radius: 10;
   border-radius: 28px;
-  color: GRAY;
+  color: midnightblue;
   font-size: 20px;
   background: none;
   padding: 5px;
-  border: 2px solid GRAY;
+  border: 2px solid midnightblue;
   text-decoration: none;
 }
 
-.subscribe:hover {
+.subscribe:hover,
+.subscribe:active {
+  background: midnightblue;
+  color: white;
+}
+
+form rl {
+  color: midnightblue;
+  height: 50px;
+  line-height: 50px;
+}
+
+form rl:hover,
+form rl:active {
   color: hotpink;
-  border: 2px solid hotpink;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .socialicon {
@@ -353,6 +404,15 @@ export default {
   margin: 5px;
   filter: grayscale(100%);
   cursor: pointer;
+}
+
+.github a {
+  color: midnightblue;
+}
+
+.github a:hover {
+  text-decoration: none;
+  color: white;
 }
 
 @media screen and (max-width: 554px) {

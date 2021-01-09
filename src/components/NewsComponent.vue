@@ -103,3 +103,79 @@ export default {
   },
 }
 </script>
+
+<style>
+@media screen and (max-width: 480px) {
+  .shortnewsimg {
+    height: 150px;
+  }
+}
+.shortnewsdiv {
+  margin: 10px;
+  border: none;
+}
+.shortnewsdiv:hover {
+  cursor: pointer;
+}
+
+.shortnewsimg {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.shortnewstitle {
+  vertical-align: middle;
+  line-height: 1em;
+  color: midnightblue;
+}
+
+.shortnewsdate {
+  color: gray;
+}
+
+.nd1 {
+  height: 150px;
+  float: left;
+  border: none;
+}
+
+.nd2 {
+  height: 100px;
+  line-height: 100px;
+  border: none;
+  display: inline-block;
+}
+
+.nd3 {
+  height: 50px;
+  line-height: 50px;
+  border: none;
+  display: inline-block;
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.newstitle {
+  color: midnightblue;
+  vertical-align: top;
+}
+
+.newsdate {
+  color: gray;
+}
+
+.newsimg {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+</style>

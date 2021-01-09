@@ -60,7 +60,10 @@ li {
 }
 
 .logout a:hover,
-li rl2:hover {
+.logout a:active,
+li rl2:hover,
+li rl2:active {
+  cursor: pointer;
   text-decoration: none;
   color: hotpink;
 }

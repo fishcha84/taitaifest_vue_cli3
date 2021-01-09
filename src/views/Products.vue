@@ -128,8 +128,13 @@
             </div>
 
             <div class="jcsb">
-              <button type="button" class="btn btn-secondary jcsbbtn" data-dismiss="modal">cancel</button>
-              <button type="button" class="btn btn-primary jcsbbtn" @click="updateProduct" v-if="isNew === true">
+              <button type="button" class="btn btn-outline-secondary jcsbbtn" data-dismiss="modal">cancel</button>
+              <button
+                type="button"
+                class="btn btn-outline-primary jcsbbtn"
+                @click="updateProduct"
+                v-if="isNew === true"
+              >
                 add new product
               </button>
               <button type="button" class="btn btn-primary jcsbbtn" @click="updateProduct" v-else>update</button>
@@ -150,11 +155,11 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>are you sure to del {{ product.title }}?</p>
+            <p>Are you sure to del {{ product.title }}?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">No, I regret.</button>
-            <button type="button" class="btn btn-primary" @click="delProduct">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">No, I regret.</button>
+            <button type="button" class="btn btn-outline-primary" @click="delProduct">
               Yes, make it like an ex-girlfriend.
             </button>
           </div>
