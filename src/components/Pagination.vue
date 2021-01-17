@@ -23,35 +23,33 @@
 
 <script>
 import Paginate from 'vuejs-paginate'
-
 export default {
   name: 'pagination',
-
   components: {
-    Paginate,
-  },
-  date() {
-    return {
-      currentPageNum: this.pageNum,
-    }
+    Paginate
   },
   props: {
     pageNum: {
       type: Number,
-      default: 1,
+      default: 1
     },
     totalPageCount: {
-      type: Number,
+      type: Number
     },
     currentPage: {
-      type: Number,
-    },
+      type: Number
+    }
+  },
+  date () {
+    return {
+      currentPageNum: this.pageNum
+    }
   },
   methods: {
-    changePage(num) {
+    changePage (num) {
       this.currentPageNum = num
       this.$emit('updatePageNum', num)
-    },
-  },
+    }
+  }
 }
 </script>

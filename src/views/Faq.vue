@@ -23,7 +23,7 @@
                 id="collapseOne"
                 class="collapse"
                 :class="{ show: showItem === 'showAccommondation' }"
-                aria-labelledby="accommondation"
+                aria-labelledby="exaccommondation"
                 data-parent="#accordionExample"
               >
                 <div class="card-body">
@@ -70,10 +70,7 @@
                     </div>
                     <li>local wether report<span style="color: blue">(real-time update)</span></li>
                     <div style="color: blue">
-                      <div>
-                        temp in {{ targetLocation.locationName }} is {{ taipeiTemp }}℃
-                        <!-- {{ targetLocation.weatherElement[3].elementValue.value }}℃ -->
-                      </div>
+                      <div>temp in {{ targetLocation.locationName }} is {{ taipeiTemp }}℃</div>
                     </div>
                   </ul>
                 </div>
@@ -167,9 +164,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Faq',
   components: {
-    pagination,
+    pagination
   },
-  data() {
+  data () {
     return {
       rowsPerPage: 6,
       pageNum: 1,
@@ -178,30 +175,30 @@ export default {
       targetLocation: {},
       taipeiTemp: '',
       msgs: [],
-      filteredmsgs: [],
+      filteredmsgs: []
     }
   },
   watch: {
     items: () => {
       this.$nextTick(() => [this.goAnchor(window.location.hash)])
-    },
+    }
   },
   methods: {
     ...mapActions(['changeShowItem']),
 
-    getuBike101() {
+    getuBike101 () {
       const vm = this
       const api = 'https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.json'
       vm.$axios.get(api).then((res) => {
-        vm.uBike101 = res.data['retVal']['0007']
+        vm.uBike101 = res.data.retVal['0007']
       })
     },
 
-    changeShowItem(item) {
+    changeShowItem (item) {
       this.$store.dispatch('changeShowItem', item)
     },
 
-    getTemp() {
+    getTemp () {
       const vm = this
       const api =
         'https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/O-A0003-001?Authorization=rdec-key-123-45678-011121314&format=JSON'
@@ -216,32 +213,32 @@ export default {
       })
     },
 
-    getmsgs() {
+    getmsgs () {
       const vm = this
-      vm.$axios.get(`https://fishcha842.000webhostapp.com/guestbook.php`).then((response) => {
+      vm.$axios.get('https://fishcha842.000webhostapp.com/guestbook.php').then((response) => {
         vm.msgs = response.data
         vm.totalPageCount = Math.ceil(vm.msgs.length / vm.rowsPerPage)
         vm.filterByPageNum(1)
       })
     },
 
-    filterByPageNum(num) {
+    filterByPageNum (num) {
       this.pageNum = num
       this.filteredmsgs = this.msgs.slice(this.rowsPerPage * (num - 1), this.rowsPerPage * num)
-    },
+    }
   },
   computed: {
-    ...mapGetters(['showItem']),
+    ...mapGetters(['showItem'])
   },
 
-  created() {
+  created () {
     this.getuBike101()
     this.getTemp()
     this.getmsgs()
   },
-  mounted() {
+  mounted () {
     $('.collapse').collapse()
-  },
+  }
 }
 </script>
 

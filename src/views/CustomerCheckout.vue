@@ -17,15 +17,21 @@
                 </td>
               </tr>
               <tr class="row">
-                <td class="col-md-4 col-xs-12 ordertd1 jcc aic">products list</td>
+                <td class="col-md-4 col-xs-12 ordertd1 jcc aic">
+                  products list
+                </td>
                 <td class="col-md-8 col-xs-12">
-                  <p v-for="item in order.products" :key="item.id">{{ item.product.title }} * {{ item.qty }}</p>
+                  <p v-for="item in order.products" :key="item.id">
+                    {{ item.product.title }} * {{ item.qty }}
+                  </p>
                   <hr />
                   <p>total: {{ order.total | currency }} ntd</p>
                 </td>
               </tr>
               <tr class="row">
-                <td class="col-md-4 col-xs-12 ordertd1 jcc aic">customer's info</td>
+                <td class="col-md-4 col-xs-12 ordertd1 jcc aic">
+                  customer's info
+                </td>
                 <td class="col-md-8 col-xs-12">
                   <p>name: {{ order.user.name }}</p>
                   <p>tel: {{ order.user.tel }}</p>
@@ -35,7 +41,9 @@
                 </td>
               </tr>
               <tr class="row">
-                <td class="col-md-4 col-xs-12 ordertd1 align-middle jcc aic">payment status</td>
+                <td class="col-md-4 col-xs-12 ordertd1 align-middle jcc aic">
+                  payment status
+                </td>
                 <td class="col-md-8 col-xs-12">
                   <div class="jcc aic">
                     <p v-if="!order.is_paid">unpaid</p>
@@ -45,7 +53,12 @@
               </tr>
             </table>
             <div>
-              <button v-if="!order.is_paid" class="btn btn-outline-danger w-100 mt-2 mb-2">pay it!</button>
+              <button
+                v-if="!order.is_paid"
+                class="btn btn-outline-danger w-100 mt-2 mb-2"
+              >
+                pay it!
+              </button>
             </div>
           </form>
         </div>
@@ -65,40 +78,42 @@
 </template>
 
 <script>
-import $ from 'jquery'
-import Breadcrumb from '@/components/Breadcrumb.vue'
-import { mapGetters, mapActions } from 'vuex'
+import $ from "jquery";
+import Breadcrumb from "@/components/Breadcrumb.vue";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
     return {
-      orderId: '',
-    }
+      orderId: "",
+    };
   },
   components: {
     Breadcrumb,
   },
   methods: {
-    ...mapActions('orderModules', ['getOrder', 'payOrder']),
+    ...mapActions("orderModules", ["getOrder", "payOrder"]),
 
     getOrder(orderId) {
-      this.$store.dispatch('orderModules/getOrder', orderId)
+      const vm = this;
+      vm.$store.dispatch("orderModules/getOrder", orderId);
     },
     payOrder(orderId) {
-      this.$store.dispatch('orderModules/payOrder', orderId)
-      $('#checkModal').modal('show')
+      const vm = this;
+      this.$store.dispatch("orderModules/payOrder", orderId);
+      $("#checkModal").modal("show");
       setTimeout(() => {
-        $('#checkModal').modal('hide')
-        this.$router.push({ path: '/shopping/customer_orders' })
-      }, 3000)
+        $("#checkModal").modal("hide");
+        this.$router.push({ path: "/shopping/customer_orders" });
+      }, 3000);
     },
   },
   computed: {
-    ...mapGetters('orderModules', ['order']),
+    ...mapGetters("orderModules", ["order"]),
   },
   created() {
-    this.orderId = this.$route.params.orderId
-    this.getOrder(this.orderId)
+    this.orderId = this.$route.params.orderId;
+    this.getOrder(this.orderId);
   },
-}
+};
 </script>

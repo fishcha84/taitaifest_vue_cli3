@@ -15,29 +15,30 @@
 
 <script>
 export default {
-  name: 'Breadcrumb',
+  name: "Breadcrumb",
   data() {
     return {
       breadcrumbList: [],
-    }
+    };
   },
   mounted() {
-    this.updateList()
+    this.updateList();
   },
   watch: {
     $route() {
-      this.updateList()
+      this.updateList();
     },
   },
   methods: {
     routeTo(pRouteTo) {
-      if (this.breadcrumbList[pRouteTo].link) this.$router.push(this.breadcrumbList[pRouteTo].link)
+      if (this.breadcrumbList[pRouteTo].link)
+        this.$router.push(this.breadcrumbList[pRouteTo].link);
     },
     updateList() {
-      this.breadcrumbList = this.$route.meta.breadcrumb
+      this.breadcrumbList = this.$route.meta.breadcrumb;
     },
   },
-}
+};
 </script>
 
 <style scoped>
@@ -62,7 +63,7 @@ li:last-child:hover {
 }
 
 li:not(:last-child):after {
-  content: '>';
+  content: ">";
   margin: 5px;
 }
 </style>

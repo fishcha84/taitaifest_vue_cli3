@@ -1,11 +1,14 @@
 <template>
   <div id="app">
+    <loading :active.sync="isLoading"></loading>
     <div class="sticky-foot">
       <div class="sticky-foot-main">
         <div class="container-fluid">
           <div class="row">
             <div class="col">
-              <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+              <nav
+                class="navbar fixed-top navbar-expand-lg navbar-light bg-light"
+              >
                 <router-link to="/">
                   <img
                     src="@/assets/image/logo/logo.png"
@@ -32,28 +35,57 @@
 
                 <div class="collapse navbar-collapse" id="navbarContent">
                   <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><router-link class="rl" tag="rl" to="/news"> News </router-link>|</li>
-
-                    <li class="nav-item"><router-link class="rl" tag="rl" to="/lineup"> Lineup </router-link> |</li>
                     <li class="nav-item">
-                      <router-link class="rl" tag="rl" to="/timetable"> Timetable </router-link> |
+                      <router-link class="rl" tag="rl" to="/news">
+                        News </router-link
+                      >|
                     </li>
 
                     <li class="nav-item">
-                      <router-link class="rl" tag="rl" to="/shopping/customer_orders"> Shopping </router-link> |
+                      <router-link class="rl" tag="rl" to="/lineup">
+                        Lineup
+                      </router-link>
+                      |
+                    </li>
+                    <li class="nav-item">
+                      <router-link class="rl" tag="rl" to="/timetable">
+                        Timetable
+                      </router-link>
+                      |
+                    </li>
+
+                    <li class="nav-item">
+                      <router-link
+                        class="rl"
+                        tag="rl"
+                        to="/shopping/customer_orders"
+                      >
+                        Shopping
+                      </router-link>
+                      |
                     </li>
 
                     <li class="nav-item dropdown">
-                      <span tag="rl" class="dropdown-toggle" data-toggle="dropdown"> Faq </span>
+                      <span
+                        tag="rl"
+                        class="dropdown-toggle"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Faq<span class="caret"></span>
+                      </span>
 
                       <div class="dropdown-menu">
                         <router-link
                           class="rl"
                           tag="rl"
                           to="/faq"
-                          v-scroll-to="'#accommondation'"
                           @click.native="changeShowItem('showAccommondation')"
-                          ><div class="dropdown-item">Accommondation</div>
+                          v-scroll-to="'#accommondation'"
+                        >
+                          <div class="dropdown-item">Accommondation</div>
                         </router-link>
 
                         <router-link
@@ -73,7 +105,11 @@
                           @click.native="changeShowItem('showMap')"
                           ><div class="dropdown-item">Map</div>
                         </router-link>
-                        <router-link class="rl" tag="rl" to="/faq" v-scroll-to="'#guestbook'"
+                        <router-link
+                          class="rl"
+                          tag="rl"
+                          to="/faq"
+                          v-scroll-to="'#guestbook'"
                           ><div class="dropdown-item">Guestbook</div>
                         </router-link>
                       </div>
@@ -105,24 +141,51 @@
                     <div class="col-xs-12 col-md-4">
                       <ul>
                         <li class="guidelinetitle">what-</li>
-                        <li><router-link class="rl" tag="rl" to="/">home</router-link></li>
-                        <li><router-link class="rl" tag="rl" to="/news">news</router-link></li>
+                        <li>
+                          <router-link class="rl" tag="rl" to="/"
+                            >home</router-link
+                          >
+                        </li>
+                        <li>
+                          <router-link class="rl" tag="rl" to="/news"
+                            >news</router-link
+                          >
+                        </li>
                       </ul>
                     </div>
 
                     <div class="col-xs-12 col-md-4">
                       <ul>
                         <li class="guidelinetitle">who-</li>
-                        <li><router-link class="rl" tag="rl" to="/lineup">lineup</router-link></li>
-                        <li><router-link class="rl" tag="rl" to="/timetable">timetable</router-link></li>
+                        <li>
+                          <router-link class="rl" tag="rl" to="/lineup"
+                            >lineup</router-link
+                          >
+                        </li>
+                        <li>
+                          <router-link class="rl" tag="rl" to="/timetable"
+                            >timetable</router-link
+                          >
+                        </li>
                       </ul>
                     </div>
 
                     <div class="col-xs-12 col-md-4">
                       <ul>
                         <li class="guidelinetitle">how-</li>
-                        <li><router-link class="rl" tag="rl" to="/shopping/customer_orders">shopping</router-link></li>
-                        <li><router-link class="rl" tag="rl" to="/faq">faq</router-link></li>
+                        <li>
+                          <router-link
+                            class="rl"
+                            tag="rl"
+                            to="/shopping/customer_orders"
+                            >shopping</router-link
+                          >
+                        </li>
+                        <li>
+                          <router-link class="rl" tag="rl" to="/faq"
+                            >faq</router-link
+                          >
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -131,7 +194,11 @@
             </div>
             <div id="glS">
               <div class="footer-content">
-                <div data-toggle="collapse" data-target="#one" class="footer_title jcsb aic p-2">
+                <div
+                  data-toggle="collapse"
+                  data-target="#one"
+                  class="footer_title jcsb aic p-2"
+                >
                   <span class="guidelinetitle">what-</span>
                   <span><i class="fas fa-plus"></i></span>
                 </div>
@@ -141,23 +208,41 @@
                     <li><router-link tag="rl" to="/news">news</router-link></li>
                   </ul>
                 </div>
-                <div data-toggle="collapse" data-target="#two" class="footer_title jcsb aic p-2">
+                <div
+                  data-toggle="collapse"
+                  data-target="#two"
+                  class="footer_title jcsb aic p-2"
+                >
                   <span class="guidelinetitle">who-</span>
                   <span><i class="fas fa-plus"></i></span>
                 </div>
                 <div id="two" class="collapse" data-parent="#glS">
                   <ul>
-                    <li><router-link tag="rl" to="/lineup">lineup</router-link></li>
-                    <li><router-link tag="rl" to="/timetable">timetable</router-link></li>
+                    <li>
+                      <router-link tag="rl" to="/lineup">lineup</router-link>
+                    </li>
+                    <li>
+                      <router-link tag="rl" to="/timetable"
+                        >timetable</router-link
+                      >
+                    </li>
                   </ul>
                 </div>
-                <div data-toggle="collapse" data-target="#three" class="footer_title jcsb aic p-2">
+                <div
+                  data-toggle="collapse"
+                  data-target="#three"
+                  class="footer_title jcsb aic p-2"
+                >
                   <span class="guidelinetitle">how-</span>
                   <span><i class="fas fa-plus"></i></span>
                 </div>
                 <div id="three" class="collapse" data-parent="#glS">
                   <ul>
-                    <li><router-link tag="rl" to="/shopping/customer_orders">shopping</router-link></li>
+                    <li>
+                      <router-link tag="rl" to="/shopping/customer_orders"
+                        >shopping</router-link
+                      >
+                    </li>
                     <li><router-link tag="rl" to="/faq">faq</router-link></li>
                   </ul>
                 </div>
@@ -168,8 +253,19 @@
             <p class="footer-title">subscribe newsletter:</p>
             <div class="footer-content p-2">
               <form action="newsletter.php" method="post" name="newsletter">
-                <input type="email" class="emailinput my-2 w-100" name="useremail" placeholder="your email" d-block />
-                <input type="submit" class="subscribe my-2 w-100" value="Subscribe!" d-block />
+                <input
+                  type="email"
+                  class="emailinput my-2 w-100"
+                  name="useremail"
+                  placeholder="your email"
+                  d-block
+                />
+                <input
+                  type="submit"
+                  class="subscribe my-2 w-100"
+                  value="Subscribe!"
+                  d-block
+                />
               </form>
             </div>
           </div>
@@ -177,7 +273,10 @@
             <p class="footer-title">contact us:</p>
             <div class="footer-content">
               <a href="mailto:fishcha842@gmail.com">
-                <img class="socialicon" src="@/assets/image/socialicon/unnamed.png" />
+                <img
+                  class="socialicon"
+                  src="@/assets/image/socialicon/unnamed.png"
+                />
               </a>
 
               <img
@@ -199,14 +298,22 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Sincerely</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <h5 class="modal-title" id="exampleModalLongTitle">
+                        Sincerely
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body text-left">
                       <p>
-                        Sorry, we are thinking about not establishing a fb account, since it is full of old people only.
+                        Sorry, we are thinking about not establishing a fb
+                        account, since it is full of old people only.
                       </p>
                     </div>
                   </div>
@@ -214,10 +321,16 @@
               </div>
 
               <a href="https://www.instagram.com/?hl=zh-tw">
-                <img class="socialicon" src="@/assets/image/socialicon/Instagram_AppIcon_Aug2017.png" />
+                <img
+                  class="socialicon"
+                  src="@/assets/image/socialicon/Instagram_AppIcon_Aug2017.png"
+                />
               </a>
               <a href="https://www.youtube.com/feed/trending">
-                <img class="socialicon" src="@/assets/image/socialicon/youtube_social_circle_red.png" />
+                <img
+                  class="socialicon"
+                  src="@/assets/image/socialicon/youtube_social_circle_red.png"
+                />
               </a>
             </div>
           </div>
@@ -233,41 +346,41 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 // import Breadcrumb from './components/Breadcrumb.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: 'App',
+  name: "App",
   // components: {
   //   Breadcrumb,
   // },
   computed: {
-    ...mapGetters(['showItem', 'isLoading']),
+    ...mapGetters(["showItem", "isLoading"]),
   },
   data() {
-    return {}
+    return {};
   },
   methods: {
-    ...mapActions(['changeShowItem', 'updateLoading']),
+    ...mapActions(["changeShowItem", "updateLoading"]),
   },
   mounted() {
     $(function () {
-      $('[data-toggle="popover"]').popover()
-    })
+      $('[data-toggle="popover"]').popover();
+    });
 
-    $('.rl').on('click', () => {
+    $(".rl").on("click", () => {
       if ($(window).width() < 992) {
-        $('.navbar-toggler').click()
+        $(".navbar-toggler").click();
       }
-    })
+    });
   },
-}
+};
 </script>
 
 <style lang="scss">
-@import './assets/all';
-@import './assets/taitaifest.css';
+@import "./assets/all";
+@import "./assets/taitaifest.css";
 
 #app {
   max-width: 100%;
@@ -288,6 +401,7 @@ li span {
 li .rl:hover,
 li span:hover {
   color: midnightblue;
+  cursor: pointer;
 }
 
 .dropdown-menu .dropdown-item:hover {

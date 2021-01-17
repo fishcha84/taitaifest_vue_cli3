@@ -43,22 +43,22 @@ import $ from 'jquery'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  data() {
+  data () {
     return {}
   },
   methods: {
     ...mapActions(['addToCart', 'removeFromMyFavorite']),
 
-    removeFromMyFavorite(item) {
+    removeFromMyFavorite (item) {
       this.$store.dispatch('removeFromMyFavorite', item)
       this.checkFavorite()
     },
 
-    addToCart(id, qty) {
+    addToCart (id, qty) {
       this.$store.dispatch('addToCart', { id, qty })
       this.$router.push({ path: '/shopping/customer_orders' })
     },
-    checkFavorite() {
+    checkFavorite () {
       if (this.$store.state.myFavorite.length === 0) {
         $('#favoriteModal').modal('show')
         setTimeout(() => {
@@ -68,19 +68,19 @@ export default {
           this.$router.push({ path: '/shopping/customer_orders' })
         }, 1500)
       }
-    },
+    }
   },
   computed: {
-    ...mapGetters(['cart', 'myFavorite']),
+    ...mapGetters(['cart', 'myFavorite'])
   },
-  beforeCreate() {
+  beforeCreate () {
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
     })
   },
-  mounted() {
+  mounted () {
     this.checkFavorite()
-  },
+  }
 }
 </script>
 

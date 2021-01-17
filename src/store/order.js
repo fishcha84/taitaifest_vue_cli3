@@ -4,36 +4,36 @@ export default {
   namespaced: true,
   state: {
     order: {
-      user: {},
-    },
+      user: {}
+    }
   },
   actions: {
-    getOrder(context, order_id) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order/${order_id}`
+    getOrder (context, orderId) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order/${orderId}`
       axios.get(api).then((response) => {
         if (response.data.success) {
           context.commit('ORDER', response.data.order)
         }
       })
     },
-    payOrder(context, order_id) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${order_id}`
+    payOrder (context, orderId) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${orderId}`
       axios.post(api).then((response) => {
         if (response.data.success) {
-          context.commit('PAID')
+          context.commit('PAID', true)
         }
       })
-    },
+    }
   },
   mutations: {
-    ORDER(state, payload) {
+    ORDER (state, payload) {
       state.order = payload
     },
-    PAID(state) {
-      state.order.is_paid = true
-    },
+    PAID (state, payload) {
+      state.order.is_paid = payload
+    }
   },
   getters: {
-    order: (state) => state.order,
-  },
+    order: (state) => state.order
+  }
 }

@@ -32,13 +32,13 @@
 import Breadcrumb from '../components/Breadcrumb.vue'
 export default {
   name: 'Result',
-  data() {
+  data () {
     return {
-      headliners: [],
+      headliners: []
     }
   },
   components: {
-    Breadcrumb,
+    Breadcrumb
   },
   methods: {
     // getHeadliners() {
@@ -48,11 +48,11 @@ export default {
     //   })
     // },
   },
-  created() {
+  created () {
     // this.getHeadliners
     this.$axios.get('https://fishcha842.000webhostapp.com/headliners.php').then((response) => {
       this.headliners = response.data
     })
-  },
+  }
 }
 </script>

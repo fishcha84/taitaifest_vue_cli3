@@ -102,7 +102,7 @@
 export default {
   name: 'Lineup',
 
-  data() {
+  data () {
     return {
       progresslength: 0,
       posts: [],
@@ -110,23 +110,23 @@ export default {
       selectedGenre: 'All',
       headliners: [],
       voteforartist: [],
-      recommendartist: { artist: '' },
+      recommendartist: { artist: '' }
     }
   },
 
   methods: {
-    getPosts() {
+    getPosts () {
       const vm = this
       vm.$http.get('lineup.json').then((response) => {
         vm.posts = response.data
         vm.progresslength = (vm.posts.length / 20) * 100
       })
     },
-    getHeadliners() {
+    getHeadliners () {
       this.$axios.get('https://fishcha842.000webhostapp.com/headliners.php').then((response) => {
         this.headliners = response.data
       })
-    },
+    }
     // toFormData(obj) {
     //   let fd = new FormData()
     //   for (let i in obj) {
@@ -149,7 +149,7 @@ export default {
   },
 
   computed: {
-    filteredPosts() {
+    filteredPosts () {
       const vm = this
       const selectedGenre = vm.selectedGenre
       if (selectedGenre === 'All') {
@@ -159,13 +159,13 @@ export default {
           return post.genre === selectedGenre
         })
       }
-    },
+    }
   },
 
-  created() {
+  created () {
     this.getHeadliners()
     this.getPosts()
-  },
+  }
 }
 </script>
 

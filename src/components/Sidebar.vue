@@ -31,19 +31,19 @@
 
 <script>
 export default {
-  name: 'Sidebar',
+  name: "Sidebar",
   methods: {
     logout() {
-      const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/logout`
+      const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/logout`;
       vm.$http.post(api).then((response) => {
         if (response.data.success) {
-          vm.$router.push('/shopping/signin')
+          vm.$router.push("/shopping/signin");
         }
-      })
+      });
     },
   },
-}
+};
 </script>
 
 <style scoped>

@@ -13,7 +13,11 @@
         <div class="row">
           <div class="col-lg-4 col-sm-12">
             <div class="nd1">
-              <img class="shortnewsimg" :src="`${publicPath}image/news/${item.newsTitle}.jpg`" alt="" />
+              <img
+                class="shortnewsimg"
+                :src="`${publicPath}image/news/${item.newsTitle}.jpg`"
+                alt=""
+              />
             </div>
           </div>
           <div class="col-lg-8 col-sm-12">
@@ -45,9 +49,15 @@
         <div class="row">
           <div class="col">
             <h1 class="newstitle">{{ showContentItem.newsTitle }}</h1>
-            <h3 class="newsdate" align="right">{{ showContentItem.newsReleasedDate }}</h3>
+            <h3 class="newsdate" align="right">
+              {{ showContentItem.newsReleasedDate }}
+            </h3>
             <hr />
-            <img class="newsimg" :src="`${publicPath}image/news/${showContentItem.newsTitle}.jpg`" alt="" />
+            <img
+              class="newsimg"
+              :src="`${publicPath}image/news/${showContentItem.newsTitle}.jpg`"
+              alt=""
+            />
             <div v-html="showContentItem.newsContent"></div>
             <iframe
               src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffishcha842.000webhostapp.com%2F%23%2Fnews&width=450&layout=standard&action=like&size=small&share=true&height=35&appId=2646271298939503"
@@ -68,40 +78,42 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 
 export default {
-  name: 'NewsComponent',
+  name: "NewsComponent",
   data() {
     return {
       news: [],
       publicPath: process.env.BASE_URL,
       showContent: false,
       showContentItem: {},
-    }
+    };
   },
   methods: {
     a(item, idx) {
-      this.showContent = true
-      this.showContentItem = item
+      this.showContent = true;
+      this.showContentItem = item;
     },
     b() {
-      this.showContent = false
-      this.showContentItem = {}
+      this.showContent = false;
+      this.showContentItem = {};
     },
   },
   created() {
-    this.$http.get('news.json').then((response) => {
-      this.news = response.data
-    })
+    this.$http.get("news.json").then((response) => {
+      this.news = response.data;
+    });
   },
   mounted() {
-    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+    const tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
   },
-}
+};
 </script>
 
 <style>

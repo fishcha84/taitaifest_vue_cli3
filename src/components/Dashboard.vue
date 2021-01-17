@@ -3,10 +3,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12 col-lg-3">
-          <Sidebar/>
+          <Sidebar />
         </div>
         <div class="col-sm-12 col-lg-9">
-          <router-view/>
+          <router-view />
         </div>
       </div>
     </div>
@@ -15,18 +15,20 @@
 
 <script>
 import Sidebar from "@/components/Sidebar.vue";
-import Pagination from '@/components/Pagination.vue';
+import Pagination from "@/components/Pagination.vue";
 
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
   components: {
     Sidebar,
-    Pagination
+    Pagination,
   },
-  created(){
-    const myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)changToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  created() {
+    const myCookie = document.cookie.replace(
+      /(?:(?:^|.*;\s*)changToken\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
     this.$http.defaults.headers.common.Authorization = myCookie;
-  }
+  },
 };
 </script>
-

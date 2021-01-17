@@ -127,16 +127,16 @@ import NewsComponent from '@/components/NewsComponent.vue'
 export default {
   name: 'News',
   components: {
-    NewsComponent,
+    NewsComponent
   },
 
-  mounted() {
+  mounted () {
     $('#recipeCarousel').carousel({
-      interval: 10000,
+      interval: 10000
     })
 
     $('.carousel .carousel-item').each(function () {
-      let minPerSlide = 3
+      const minPerSlide = 3
       let next = $(this).next()
       if (!next.length) {
         next = $(this).siblings(':first')
@@ -152,7 +152,7 @@ export default {
         next.children(':first-child').clone().appendTo($(this))
       }
     })
-  },
+  }
 }
 </script>
 

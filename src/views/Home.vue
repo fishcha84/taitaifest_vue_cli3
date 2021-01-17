@@ -3,9 +3,17 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <div class="carousel slide m-2" id="carouselarea" data-ride="carousel">
+          <div
+            class="carousel slide m-2"
+            id="carouselarea"
+            data-ride="carousel"
+          >
             <ol class="carousel-indicators">
-              <li data-target="#carouselarea" data-slide-to="0" class="active"></li>
+              <li
+                data-target="#carouselarea"
+                data-slide-to="0"
+                class="active"
+              ></li>
               <li data-target="#carouselarea" data-slide-to="1"></li>
               <li data-target="#carouselarea" data-slide-to="2"></li>
               <li data-target="#carouselarea" data-slide-to="3"></li>
@@ -14,7 +22,11 @@
 
             <div class="carousel-inner aic">
               <div class="carousel-item active">
-                <img class="c1" src="@/assets/image/carousel/1.jpg" alt="glastonbury" />
+                <img
+                  class="c1"
+                  src="@/assets/image/carousel/1.jpg"
+                  alt="glastonbury"
+                />
                 <div class="carousel-caption cc">
                   <h1>ENDLESS GRASS</h1>
                   <h5>Wherever you felt tired at, just sit down.</h5>
@@ -25,9 +37,13 @@
               </div>
 
               <div class="carousel-item aic">
-                <img class="c2" src="@/assets/image/carousel/2.jpg" alt="pyramid" />
+                <img
+                  class="c2"
+                  src="@/assets/image/carousel/2.jpg"
+                  alt="pyramid"
+                />
                 <div class="carousel-caption cc">
-                  <h1>FEATURED STAGES</h1>
+                  <h1>UNIQUE STAGES</h1>
                   <h5>Every stage is well-designed.</h5>
                   <router-link to="/shopping/customer_orders">
                     <button class="btn">TICKETS ON SALE NOW >>></button>
@@ -36,7 +52,11 @@
               </div>
 
               <div class="carousel-item">
-                <img class="c3" src="@/assets/image/carousel/3.jpg" alt="keane" />
+                <img
+                  class="c3"
+                  src="@/assets/image/carousel/3.jpg"
+                  alt="keane"
+                />
                 <div class="carousel-caption cc">
                   <h1>UP2U LINEUP</h1>
                   <h5>Your headliners, you decide!</h5>
@@ -49,7 +69,7 @@
               <div class="carousel-item">
                 <img class="c4" src="@/assets/image/carousel/4.jpg" alt="fun" />
                 <div class="carousel-caption cc">
-                  <h1>VARIOUS ACTIVITIES</h1>
+                  <h1>FUN ACTIVITY</h1>
                   <h5>You won't feel bored.</h5>
                   <router-link to="/shopping/customer_orders">
                     <button class="btn">TICKETS ON SALE NOW >>></button>
@@ -58,7 +78,11 @@
               </div>
 
               <div class="carousel-item">
-                <img class="c5" src="@/assets/image/carousel/5.jpg" alt="food" />
+                <img
+                  class="c5"
+                  src="@/assets/image/carousel/5.jpg"
+                  alt="food"
+                />
                 <div class="carousel-caption cc">
                   <h1>EXOTIC FOOD</h1>
                   <h5>Travel around the world through food.</h5>
@@ -69,11 +93,21 @@
               </div>
             </div>
 
-            <a href="#carouselarea" class="carousel-control-prev" role="button" data-slide="prev">
+            <a
+              href="#carouselarea"
+              class="carousel-control-prev"
+              role="button"
+              data-slide="prev"
+            >
               <span class="carousel-control-prev-icon"></span>
             </a>
 
-            <a href="#carouselarea" class="carousel-control-next" role="button" data-slide="next">
+            <a
+              href="#carouselarea"
+              class="carousel-control-next"
+              role="button"
+              data-slide="next"
+            >
               <span class="carousel-control-next-icon"></span>
             </a>
           </div>
@@ -106,16 +140,22 @@
       </div>
 
       <div class="row">
-        <div class="col-xs col-md-6 col-lg-4 item item3 jcc aic"><h5>#fr</h5></div>
+        <div class="col-xs col-md-6 col-lg-4 item item3 jcc aic">
+          <h5>#fr</h5>
+        </div>
         <div class="col-xs col-md-6 col-lg-8 item item4">
           <h1 class="jcc">THE BLAZE</h1>
           <h5 class="ellipsis">
-            The Blaze, a new EDM duo from Frence, combines zen-like rhyme with talkbox-like vocal ingeniously to confort
-            you in the disturbed world.
+            The Blaze, a new EDM duo from Frence, combines zen-like rhyme with
+            talkbox-like vocal ingeniously to confort you in the disturbed
+            world.
           </h5>
           <div class="jcc">
             <router-link to="/lineup">
-              <input class="btn btn-outline-secondary mb-2" value="more detail" />
+              <input
+                class="btn btn-outline-secondary mb-2"
+                value="more detail"
+              />
             </router-link>
           </div>
         </div>
@@ -177,7 +217,9 @@
       <div class="row">
         <div class="col">
           <router-link tag="rl" to="/news">
-            <h3 class="newstitle" style="color: hotpink">News<i class="fas fa-angle-double-right"></i></h3>
+            <h3 class="newstitle" style="color: hotpink">
+              News<i class="fas fa-angle-double-right"></i>
+            </h3>
           </router-link>
         </div>
       </div>
@@ -188,7 +230,10 @@
         <div class="col-xs-12 col-md-6 col-lg-8">
           <NewsComponent class="m-2"></NewsComponent>
           <div class="tar">
-            <router-link id="morenews" to="/news" style="text-aling: right; color: hotpink; margin: 10px"
+            <router-link
+              id="morenews"
+              to="/news"
+              style="text-aling: right; color: hotpink; margin: 10px"
               >more...</router-link
             >
           </div>
@@ -219,13 +264,13 @@ import NewsComponent from '@/components/NewsComponent.vue'
 export default {
   name: 'Home',
   components: {
-    NewsComponent,
+    NewsComponent
   },
   methods: {
-    toLineup() {
+    toLineup () {
       this.$router.push('/lineup')
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -278,11 +323,12 @@ export default {
   background: #191970c3;
   text-align: left;
   padding: 20px;
-  max-width: 500px;
+  max-width: 350px;
 }
 
 .cc h1,
 .cc h5 {
+  width: 100%;
   color: hotpink;
 }
 

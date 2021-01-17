@@ -10,87 +10,93 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    showItem: '',
     isLoading: false,
-    status: {
-      loadingItem: '',
-    },
-    product: {},
-    productImageSrc: '',
-    productPic: [],
-    productPicI: {},
     cart: {
       carts: [],
       total: 0,
-      final_total: 0,
+      final_total: 0
     },
-    coupon: '',
     myFavorite: [],
+    product: {},
+    status: {
+      loadingItem: ''
+    },
+    productPic: [],
+    productPicI: {},
+    productImageSrc: '',
+    coupon: '',
+    showItem: ''
+
   },
   actions: {
-    changeShowItem(context, item) {
-      context.commit('SHOWITEM', item)
-    },
-    updateLoading(context, status) {
+
+    updateLoading (context, status) {
       context.commit('LOADING', status, { root: true })
     },
-    getProduct(context, id) {
+    getCart (context) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      context.commit('LOADING', true, { root: true })
+      axios.get(api).then((response) => {
+        context.commit('CART', response.data.data, { root: true })
+        console.log(response.data.data)
+        context.commit('LOADING', false, { root: true })
+      })
+    },
+    addToMyFavorite (context, item) {
+      context.commit('ADDFAVORITE', item, { root: true })
+    },
+    removeFromMyFavorite (context, item) {
+      context.commit('REMOVEFAVORITE', item, { root: true })
+    },
+    getProduct (context, id) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
       context.commit('LOADINGITEM', id, { root: true })
       axios.get(api).then((response) => {
-        context.commit('PRODUCT', response.data.product)
-        context.commit('PRODUCTIMAGESRC', response.data.product.imageUrl)
+        context.commit('PRODUCT', response.data.product, { root: true })
+        context.commit('PRODUCTIMAGESRC', response.data.product.imageUrl, { root: true })
         for (let i = 0; i < this.state.productPic.length; i++) {
           if (this.state.productPic[i].id === this.state.product.id) {
-            context.commit('PRODUCTPICI', this.state.productPic[i])
+            context.commit('PRODUCTPICI', this.state.productPic[i], { root: true })
           }
         }
         context.commit('LOADINGITEM', '', { root: true })
         $('#moreModal').modal('show')
       })
     },
-    getProductPic(context) {
-      axios.get('showProductPic.json').then((response) => {
-        context.commit('PRODUCTPIC', response.data)
-      })
-    },
-
-    changeProductImageSrc(context, pn) {
-      if (pn === 'ori') {
-        context.commit('PRODUCTIMAGESRC', this.state.product.imageUrl)
-      } else {
-        context.commit('PRODUCTIMAGESRC', this.state.productPicI[pn])
-      }
-    },
-
-    addToCart(context, { id, qty }) {
+    addToCart (context, { id, qty }) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      let filtered = this.state.cart.carts.filter((item) => item.product_id === id)
+      const filtered = this.state.cart.carts.filter(
+        (item) => item.product_id === id
+      )
       if (filtered.length > 0) {
         filtered.forEach((element) => {
           context.dispatch('removeCartItem', element.id)
-          let totalQty = element.qty + qty >= 4 ? 4 : (element.qty += qty)
-          let CartContent = {
-            product_id: id,
-            qty: totalQty,
-          }
-          context.commit('LOADINGITEM', id, { root: true })
-          axios.post(api, { data: CartContent }).then((response) => {
-            if (response.data.success) {
-              context.commit('LOADINGITEM', '', { root: true })
-              $('#addToCartModal').modal('show')
-              setTimeout(() => {
-                $('#addToCartModal').modal('hide')
-              }, 1000)
-              $('#moreModal').modal('hide')
-              context.dispatch('getCart')
+          const totalQty = element.qty + qty >= 4 ? 4 : (element.qty += qty)
+          if (totalQty === 0) {
+            context.dispatch('removeCartItem', element.id)
+          } else {
+            const CartContent = {
+              product_id: id,
+              qty: totalQty
             }
-          })
+            context.commit('LOADINGITEM', id, { root: true })
+            axios.post(api, { data: CartContent }).then((response) => {
+              if (response.data.success) {
+                context.commit('LOADINGITEM', '', { root: true })
+                $('#addToCartModal').modal('show')
+                setTimeout(() => {
+                  $('#addToCartModal').modal('hide')
+                }, 1000)
+                $('#moreModal').modal('hide')
+                context.dispatch('getCart')
+              }
+            })
+          }
         })
       } else {
-        let CartContent = {
+        const CartContent = {
           product_id: id,
-          qty,
+          qty
         }
         context.commit('LOADINGITEM', id, { root: true })
         axios.post(api, { data: CartContent }).then((response) => {
@@ -106,17 +112,19 @@ export default new Vuex.Store({
         })
       }
     },
-
-    getCart(context) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      context.commit('LOADING', true, { root: true })
-      axios.get(api).then((response) => {
-        context.commit('CART', response.data.data, { root: true })
-        context.commit('LOADING', false, { root: true })
+    getProductPic (context) {
+      axios.get('showProductPic.json').then((response) => {
+        context.commit('PRODUCTPIC', response.data, { root: true })
       })
     },
-
-    removeCartItem(context, id) {
+    changeProductImageSrc (context, pn) {
+      if (pn === 'ori') {
+        context.commit('PRODUCTIMAGESRC', this.state.product.imageUrl, { root: true })
+      } else {
+        context.commit('PRODUCTIMAGESRC', this.state.productPicI[pn], { root: true })
+      }
+    },
+    removeCartItem (context, id) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
       context.commit('LOADING', true, { root: true })
       axios.delete(api).then((response) => {
@@ -126,11 +134,10 @@ export default new Vuex.Store({
         }
       })
     },
-
-    useCoupon(context, coupon) {
+    useCoupon (context, coupon) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
       const couponContent = {
-        code: coupon,
+        code: coupon
       }
       axios.post(api, { data: couponContent }).then((response) => {
         if (response.data.success) {
@@ -138,69 +145,65 @@ export default new Vuex.Store({
         }
       })
     },
-    addToMyFavorite(context, item) {
-      context.commit('ADDFAVORITE', item, { root: true })
-    },
-
-    removeFromMyFavorite(context, item) {
-      context.commit('REMOVEFAVORITE', item, { root: true })
-    },
+    changeShowItem (context, item) {
+      context.commit('SHOWITEM', item, { root: true })
+    }
   },
   mutations: {
-    PRODUCTPICI(state, payload) {
-      state.productPicI = payload
+    LOADING (state, status) {
+      state.isLoading = status
     },
-    PRODUCTPIC(state, payload) {
-      state.productPic = payload
+    CART (state, payload) {
+      state.cart = payload
     },
-    PRODUCTIMAGESRC(state, payload) {
-      state.productImageSrc = payload
-    },
-    SHOWITEM(state, item) {
-      state.showItem = item
-    },
-    ADDFAVORITE(state, payload) {
+    ADDFAVORITE (state, payload) {
       state.myFavorite.push(payload)
     },
-    REMOVEFAVORITE(state, payload) {
+    REMOVEFAVORITE (state, payload) {
       for (let i = 0; i < state.myFavorite.length; i++) {
         if (state.myFavorite[i] === payload) {
           state.myFavorite.splice(i, 1)
         }
       }
     },
-    LOADING(state, status) {
-      state.isLoading = status
-    },
-    LOADINGITEM(state, id) {
+    LOADINGITEM (state, id) {
       state.status.loadingItem = id
     },
-    PRODUCT(state, payload) {
+    PRODUCT (state, payload) {
       state.product = payload
       state.product.num = 1
     },
-    CART(state, payload) {
-      state.cart = payload
+    PRODUCTPIC (state, payload) {
+      state.productPic = payload
     },
-    updateCoupon(state, coupon) {
+    PRODUCTPICI (state, payload) {
+      state.productPicI = payload
+    },
+    PRODUCTIMAGESRC (state, payload) {
+      state.productImageSrc = payload
+    },
+    updateCoupon (state, coupon) {
       state.coupon = coupon
     },
+    SHOWITEM (state, item) {
+      state.showItem = item
+    }
   },
-
   getters: {
     isLoading: (state) => state.isLoading,
+    cart: (state) => state.cart,
+    myFavorite: (state) => state.myFavorite,
     loadingItem: (state) => state.status.loadingItem,
     product: (state) => state.product,
-    productImageSrc: (state) => state.productImageSrc,
-    cart: (state) => state.cart,
-    coupon: (state) => state.coupon,
-    myFavorite: (state) => state.myFavorite,
-    showItem: (state) => state.showItem,
     productPic: (state) => state.productPic,
     productPicI: (state) => state.productPicI,
+    productImageSrc: (state) => state.productImageSrc,
+    coupon: (state) => state.coupon,
+    showItem: (state) => state.showItem,
+    form: (state) => state.form
   },
   modules: {
     productsModules,
-    orderModules,
-  },
+    orderModules
+  }
 })

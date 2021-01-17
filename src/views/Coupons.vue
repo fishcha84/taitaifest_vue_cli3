@@ -1,10 +1,12 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"></loading>
+    <!-- <loading :active.sync="isLoading"></loading> -->
     <div class="container-fluid">
       <div class="row tar m-2">
         <div class="col">
-          <button @click="openCouponModal(true)" class="btn btn-primary">create a new coupon</button>
+          <button @click="openCouponModal(true)" class="btn btn-primary">
+            create a new coupon
+          </button>
         </div>
       </div>
 
@@ -31,10 +33,16 @@
                   <span v-else>in-valid</span>
                 </td>
                 <td>
-                  <i class="fas fa-edit" @click.prevent="openCouponModal(false, item)"></i>
+                  <i
+                    class="fas fa-edit"
+                    @click.prevent="openCouponModal(false, item)"
+                  ></i>
                 </td>
                 <td>
-                  <i class="fas fa-trash" @click.prevent="openDelCouponModal(item)"></i>
+                  <i
+                    class="fas fa-trash"
+                    @click.prevent="openDelCouponModal(item)"
+                  ></i>
                 </td>
               </tr>
             </tbody>
@@ -44,7 +52,10 @@
 
       <div class="row m-2">
         <div class="col tac">
-          <Pagination :pagination="pagination" @change="getCoupons"></Pagination>
+          <Pagination
+            :pagination="pagination"
+            @change="getCoupons"
+          ></Pagination>
         </div>
       </div>
     </div>
@@ -58,7 +69,12 @@
               <span v-if="isNewCoupon === true">create Coupon</span>
               <span v-else>edit Coupon</span>
             </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -70,18 +86,34 @@
 
             <div>
               <label for="coupondiscountpercentage">discount(*%)</label>
-              <input id="coupondiscountpercentage" type="number" v-model="tempCoupon.percent" />
+              <input
+                id="coupondiscountpercentage"
+                type="number"
+                v-model="tempCoupon.percent"
+              />
             </div>
 
             <div>
               <label for="expireddate">exp</label>
-              <input id="expireddate" type="date" v-model="tempCoupon.due_date" />
+              <input
+                id="expireddate"
+                type="date"
+                v-model="tempCoupon.due_date"
+              />
             </div>
 
-            <div><input type="checkbox" v-model="tempCoupon.is_enabled" />valid</div>
+            <div>
+              <input type="checkbox" v-model="tempCoupon.is_enabled" />valid
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              cancel
+            </button>
             <button type="button" class="btn btn-primary" @click="updateCoupon">
               <span v-if="!isNewCoupon === true">edit</span>
               <span v-else>create</span>
@@ -108,7 +140,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" style="color: red">del Coupon</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -116,8 +153,16 @@
             <p>are you sure to del coupon {{ tempCoupon.code }}?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">no</button>
-            <button type="button" class="btn btn-primary" @click="delCoupon">yes</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              no
+            </button>
+            <button type="button" class="btn btn-primary" @click="delCoupon">
+              yes
+            </button>
           </div>
         </div>
       </div>
@@ -126,11 +171,11 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 
-import Pagination from '../components/Pagination.vue'
+import Pagination from "../components/Pagination.vue";
 
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -139,86 +184,86 @@ export default {
       tempCoupon: {},
       isNewCoupon: true,
       pagination: {},
-    }
+    };
   },
 
   methods: {
-    ...mapActions(['updateLoading']),
+    ...mapActions(["updateLoading"]),
     getCoupons(page = 1) {
-      const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`
-      vm.$store.dispatch('updateLoading', true)
+      const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`;
+      vm.$store.dispatch("updateLoading", true);
       vm.$http.get(api).then((response) => {
         if (response.data.success) {
-          vm.$store.dispatch('updateLoading', false)
-          vm.coupons = response.data.coupons
-          vm.pagination = response.data.pagination
+          vm.$store.dispatch("updateLoading", false);
+          vm.coupons = response.data.coupons;
+          vm.pagination = response.data.pagination;
         }
-      })
+      });
     },
 
     openCouponModal(a, b) {
-      const vm = this
-      vm.isNewCoupon = a
+      const vm = this;
+      vm.isNewCoupon = a;
       if (vm.isNewCoupon === true) {
-        vm.tempCoupon = {}
+        vm.tempCoupon = {};
       } else {
-        vm.tempCoupon = { ...b }
+        vm.tempCoupon = { ...b };
       }
-      $('#tempCouponModal').modal('show')
+      $("#tempCouponModal").modal("show");
     },
 
     updateCoupon() {
-      const vm = this
-      let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon`
-      let method = 'post'
+      const vm = this;
+      let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon`;
+      let method = "post";
       if (!vm.isNewCoupon) {
-        method = 'put'
-        api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`
+        method = "put";
+        api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
       }
 
       vm.$http[method](api, { data: vm.tempCoupon }).then((response) => {
         if (response.data.success) {
-          $('#tempCouponModal').modal('hide')
-          vm.getCoupons()
-          $('#successModal').modal('show')
+          $("#tempCouponModal").modal("hide");
+          vm.getCoupons();
+          $("#successModal").modal("show");
           setTimeout(() => {
-            $('#successModal').modal('hide')
-          }, 1000)
+            $("#successModal").modal("hide");
+          }, 1000);
         }
-      })
+      });
     },
     openDelCouponModal(item) {
-      const vm = this
-      vm.tempCoupon = { ...item }
-      $('#delCouponModal').modal('show')
+      const vm = this;
+      vm.tempCoupon = { ...item };
+      $("#delCouponModal").modal("show");
     },
     delCoupon() {
-      const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`
+      const vm = this;
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
       this.$http.delete(api).then((response) => {
         if (response.data.success) {
-          vm.getCoupons()
-          $('#delCouponModal').modal('hide')
-          $('#successModal').modal('show')
+          vm.getCoupons();
+          $("#delCouponModal").modal("hide");
+          $("#successModal").modal("show");
           setTimeout(() => {
-            $('#successModal').modal('hide')
-          }, 1000)
+            $("#successModal").modal("hide");
+          }, 1000);
         }
-      })
+      });
     },
   },
   components: {
     Pagination,
   },
   computed: {
-    ...mapGetters(['isLoading']),
+    ...mapGetters(["isLoading"]),
   },
-  mounted: $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
+  mounted: $("#myModal").on("shown.bs.modal", function () {
+    $("#myInput").trigger("focus");
   }),
   created() {
-    this.getCoupons()
+    this.getCoupons();
   },
-}
+};
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="customercart">
-    <loading :active.sync="isLoading"></loading>
+    <!-- <loading :active.sync="isLoading"></loading> -->
     <div class="container-fluid">
       <div class="row">
         <div class="col">
@@ -28,13 +28,19 @@
                 </td>
                 <td>{{ item.product.title }}</td>
                 <td>
-                  <span @click="changeQty(item, -1)" :disabled="item.qty === 1">
-                    <i class="far fa-minus-square"></i>
+                  <span @click="changeQty(item, -1)">
+                    <i
+                      class="far fa-minus-square"
+                      :class="{ disabled: item.qty == 1 }"
+                    ></i>
                   </span>
                   {{ item.qty }}
                   /{{ item.product.unit }}
-                  <span @click="changeQty(item, 1)" :disabled="item.qty >= 4">
-                    <i class="far fa-plus-square"></i>
+                  <span @click="changeQty(item, 1)">
+                    <i
+                      class="far fa-plus-square"
+                      :class="{ disabled: item.qty == 4 }"
+                    ></i>
                   </span>
                 </td>
                 <td>{{ item.product.price | currency }}</td>
@@ -72,7 +78,9 @@
                 v-model="coupon"
               />
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" id="button-addon2">apply coupon</button>
+                <button class="btn btn-outline-secondary" id="button-addon2">
+                  apply coupon
+                </button>
               </div>
             </div>
           </form>
@@ -81,7 +89,10 @@
 
       <!-- user form validation -->
       <div class="row m-2 jcc">
-        <validation-observer class="col-sm-12 col-md-6" v-slot="{ invalid, handleSubmit }">
+        <validation-observer
+          class="col-sm-12 col-md-6"
+          v-slot="{ invalid, handleSubmit }"
+        >
           <form @submit.prevent="handleSubmit(createOrder)">
             <validation-provider rules="required" v-slot="{ errors, classes }">
               <div class="form-group">
@@ -94,7 +105,9 @@
                   :class="classes"
                   v-model="form.user.name"
                 />
-                <span class="invalid-feedback">{{ errors[0] }}</span>
+                <span class="invalid-feedback" text-danger>{{
+                  errors[0]
+                }}</span>
               </div>
             </validation-provider>
             <validation-provider rules="required" v-slot="{ errors, classes }">
@@ -108,7 +121,9 @@
                   :class="classes"
                   v-model="form.user.tel"
                 />
-                <span>{{ errors[0] }}</span>
+                <span class="invalid-feedback" text-danger>{{
+                  errors[0]
+                }}</span>
               </div>
             </validation-provider>
             <validation-provider rules="required" v-slot="{ errors, classes }">
@@ -122,10 +137,15 @@
                   :class="classes"
                   v-model="form.user.address"
                 />
-                <span>{{ errors[0] }}</span>
+                <span class="invalid-feedback" text-danger>{{
+                  errors[0]
+                }}</span>
               </div>
             </validation-provider>
-            <validation-provider rules="required|email" v-slot="{ errors, classes }">
+            <validation-provider
+              rules="required|email"
+              v-slot="{ errors, classes }"
+            >
               <div class="form-group">
                 <label for="useremail">email:(required)</label>
                 <input
@@ -136,17 +156,31 @@
                   :class="classes"
                   v-model="form.user.email"
                 />
-                <span>{{ errors[0] }}</span>
+                <span class="invalid-feedback" text-danger>{{
+                  errors[0]
+                }}</span>
               </div>
             </validation-provider>
 
             <div class="form-group">
               <label for="usermsg">message:</label>
-              <textarea id="usermsg" class="form-control" type="text" name="message" v-model="form.message"></textarea>
+              <textarea
+                id="usermsg"
+                class="form-control"
+                type="text"
+                name="message"
+                v-model="form.message"
+              ></textarea>
             </div>
 
             <div style="border: none">
-              <button style="width: 100%" class="btn btn-outline-danger" :disabled="invalid">confirm the order</button>
+              <button
+                style="width: 100%"
+                class="btn btn-outline-danger"
+                :disabled="invalid"
+              >
+                confirm the order
+              </button>
             </div>
           </form>
         </validation-observer>
@@ -166,93 +200,99 @@
 </template>
 
 <script>
-import Breadcrumb from '../components/Breadcrumb.vue'
-import $ from 'jquery'
-import { mapActions, mapGetters } from 'vuex'
+import Breadcrumb from "../components/Breadcrumb.vue";
+import $ from "jquery";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: 'customercart',
+  name: "customercart",
   data() {
     return {
+      num: null,
+      product_id: "",
       form: {
         user: {
-          name: '',
-          tel: '',
-          add: '',
-          email: '',
+          name: "",
+          tel: "",
+          add: "",
+          email: "",
         },
-        message: '',
+        message: "",
       },
-      num: null,
-      product_id: '',
-    }
+    };
   },
   components: {
     Breadcrumb,
   },
   methods: {
-    ...mapActions(['getCart']),
-    removeCartItem(id) {
-      this.$store.dispatch('removeCartItem', id)
-    },
-    useCoupon(coupon) {
-      this.$store.dispatch('useCoupon', coupon)
-    },
-    createOrder() {
-      const vm = this
-      const order = vm.form
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`
-      vm.$http.post(api, { data: order }).then((response) => {
-        if (response.data.success) {
-          vm.$router.push(`/shopping/customer_checkout/${response.data.orderId}`)
-        }
-      })
-    },
-    checkCart() {
-      if (this.$store.state.cart.carts.length === 0) {
-        $('#cartModal').modal('show')
-        setTimeout(() => {
-          $('#cartModal').modal('hide')
-        }, 1000)
-        setTimeout(() => {
-          this.$router.push({ path: '/shopping/customer_orders' })
-        }, 1500)
+    ...mapActions(["getCart", "removeCartItem"]),
+
+    changeQty(item, click) {
+      this.num += click;
+      this.product_id = item.product_id;
+      if (this.num == 0) {
+        this.$store.dispatch("removeCartItem", this.product_id);
+      } else {
+        this.addToCart(this.product_id, this.num);
       }
     },
-    changeQty(item, click) {
-      this.num += click
-      this.product_id = item.product_id
-      this.addToCart(this.product_id, this.num)
+    addToCart(id, qty) {
+      this.$store.dispatch("addToCart", { id, qty });
+      this.num = null;
     },
-    addToCart(id, qty = 1) {
-      this.$store.dispatch('addToCart', { id, qty })
-      this.num = null
+    useCoupon(coupon) {
+      this.$store.dispatch("useCoupon", coupon);
+    },
+    createOrder() {
+      const vm = this;
+      const order = vm.form;
+      vm.$store.dispatch("updateLoading", true);
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`;
+      vm.$http.post(api, { data: order }).then((response) => {
+        if (response.data.success) {
+          vm.$store.dispatch("updateLoading", false);
+          vm.$router.push(
+            `/shopping/customer_checkout/${response.data.orderId}`
+          );
+        }
+      });
+    },
+    checkCart() {
+      const vm = this;
+      if (vm.$store.state.cart.carts.length === 0) {
+        $("#cartModal").modal("show");
+        setTimeout(() => {
+          $("#cartModal").modal("hide");
+        }, 1000);
+        setTimeout(() => {
+          vm.$router.push({ path: "/shopping/customer_orders" });
+        }, 1500);
+      }
     },
   },
   computed: {
-    ...mapGetters(['cart', 'coupon', 'isLoading']),
+    ...mapGetters(["isLoading", "cart", "coupon"]),
     coupon: {
       get() {
-        return this.$store.state.coupon
+        return this.$store.state.coupon;
       },
       set(value) {
-        this.$store.commit('updateCoupon', value)
+        this.$store.commit("updateCoupon", value);
       },
     },
   },
-  beforeCreate() {},
   created() {
-    this.getCart()
+    this.getCart();
   },
   mounted() {
-    $('#myModal').on('shown.bs.modal', function () {
-      $('#myInput').trigger('focus')
-    })
+    $("#myModal").on("shown.bs.modal", function () {
+      $("#myInput").trigger("focus");
+    });
   },
   updated() {
-    this.checkCart()
+    this.checkCart();
   },
-}
+};
 </script>
 
 <style>

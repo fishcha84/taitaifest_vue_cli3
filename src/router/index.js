@@ -10,24 +10,24 @@ const routes = [
     name: 'INDEX',
     component: Home,
     meta: {
-      breadcrumb: [{ name: 'Home' }],
-    },
+      breadcrumb: [{ name: 'Home' }]
+    }
   },
   {
     path: '/home',
     name: 'HOME',
     component: Home,
     meta: {
-      breadcrumb: [{ name: 'Home' }],
-    },
+      breadcrumb: [{ name: 'Home' }]
+    }
   },
   {
     path: '/news',
     name: 'NEWS',
     component: () => import('../views/News.vue'),
     meta: {
-      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'News' }],
-    },
+      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'News' }]
+    }
   },
 
   {
@@ -35,16 +35,16 @@ const routes = [
     name: 'LINEUP',
     component: () => import('../views/Lineup.vue'),
     meta: {
-      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Lineup' }],
-    },
+      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Lineup' }]
+    }
   },
   {
     path: '/result',
     name: 'RESULT',
     component: () => import('../views/Result.vue'),
     meta: {
-      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Lineup', link: '/lineup' }, { name: 'Result' }],
-    },
+      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Lineup', link: '/lineup' }, { name: 'Result' }]
+    }
   },
 
   {
@@ -52,15 +52,15 @@ const routes = [
     name: '節目表',
     component: () => import('../views/Timetable.vue'),
     meta: {
-      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Timetable' }],
-    },
+      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Timetable' }]
+    }
   },
   {
     path: '/shopping',
     name: 'SHOPPING',
     component: () => import('../views/Shopping.vue'),
     meta: {
-      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Shopping' }],
+      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Shopping' }]
     },
     children: [
       {
@@ -68,8 +68,8 @@ const routes = [
         path: 'customer_orders',
         component: () => import('../views/CustomerOrders.vue'),
         meta: {
-          breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Shopping' }, { name: 'step 1/3: Select' }],
-        },
+          breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Shopping' }, { name: 'step 1/3: Select' }]
+        }
       },
       {
         name: 'CUSTOMERCART',
@@ -80,9 +80,9 @@ const routes = [
             { name: 'Home', link: '/home' },
             { name: 'Shopping' },
             { name: 'step 1/3: Select', link: '/shopping/customer_orders' },
-            { name: 'step 2/3: Cart' },
-          ],
-        },
+            { name: 'step 2/3: Cart' }
+          ]
+        }
       },
       {
         name: 'CUSTOMERFAVORITE',
@@ -93,9 +93,9 @@ const routes = [
             { name: 'Home', link: '/home' },
             { name: 'Shopping' },
             { name: 'step 1/3: Select', link: '/shopping/customer_orders' },
-            { name: 'step 2.5/3: Favorite' },
-          ],
-        },
+            { name: 'step 2.5/3: Favorite' }
+          ]
+        }
       },
       {
         name: 'CUSTOMERCHECKOUT',
@@ -107,9 +107,9 @@ const routes = [
             { name: 'Shopping' },
             { name: 'step 1/3: Select', link: '/shopping/customer_orders' },
             { name: 'step 2/3: Cart', link: '/shopping/customer_cart' },
-            { name: 'step 3/3: Check' },
-          ],
-        },
+            { name: 'step 3/3: Check' }
+          ]
+        }
       },
 
       {
@@ -120,9 +120,9 @@ const routes = [
           breadcrumb: [
             { name: 'Home', link: '/home' },
             { name: 'Shopping', link: '/shopping/customer_orders' },
-            { name: 'Vendor Owners' },
-          ],
-        },
+            { name: 'Vendor Owners' }
+          ]
+        }
       },
 
       {
@@ -140,9 +140,9 @@ const routes = [
                 { name: 'Home', link: '/home' },
                 { name: 'Shopping', link: '/shopping/customer_orders' },
                 { name: 'Vendor Owners' },
-                { name: 'Add Products' },
-              ],
-            },
+                { name: 'Add Products' }
+              ]
+            }
           },
 
           {
@@ -155,9 +155,9 @@ const routes = [
                 { name: 'Home', link: '/home' },
                 { name: 'Shopping', link: '/shopping/customer_orders' },
                 { name: 'Vendor Owners' },
-                { name: 'Check Orders' },
-              ],
-            },
+                { name: 'Check Orders' }
+              ]
+            }
           },
           {
             name: 'COUPONS',
@@ -169,13 +169,13 @@ const routes = [
                 { name: 'Home', link: '/home' },
                 { name: 'Shopping', link: '/shopping/customer_orders' },
                 { name: 'Vendor Owners' },
-                { name: 'Create Coupons' },
-              ],
-            },
-          },
-        ],
-      },
-    ],
+                { name: 'Create Coupons' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
   },
 
   {
@@ -183,25 +183,25 @@ const routes = [
     name: 'FAQ',
     component: () => import('../views/Faq.vue'),
     meta: {
-      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Faq' }],
-    },
+      breadcrumb: [{ name: 'Home', link: '/home' }, { name: 'Faq' }]
+    }
   },
 
   {
     path: '*',
-    redirect: '/',
-  },
+    redirect: '/'
+  }
 ]
 
 const router = new VueRouter({
   linkActiveClass: 'active',
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior (to, from, savedPosition) {
     return {
       x: 0,
-      y: 0,
+      y: 0
     }
-  },
+  }
 })
 
 export default router
