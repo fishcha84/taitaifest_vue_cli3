@@ -31,35 +31,34 @@ export default new Vuex.Store({
   actions: {
 
     updateLoading (context, status) {
-      context.commit('LOADING', status, { root: true })
+      context.commit('LOADING', status)
     },
     getCart (context) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      context.commit('LOADING', true, { root: true })
+      context.commit('LOADING', true)
       axios.get(api).then((response) => {
-        context.commit('CART', response.data.data, { root: true })
-        console.log(response.data.data)
-        context.commit('LOADING', false, { root: true })
+        context.commit('CART', response.data.data)
+        context.commit('LOADING', false)
       })
     },
     addToMyFavorite (context, item) {
-      context.commit('ADDFAVORITE', item, { root: true })
+      context.commit('ADDFAVORITE', item)
     },
     removeFromMyFavorite (context, item) {
-      context.commit('REMOVEFAVORITE', item, { root: true })
+      context.commit('REMOVEFAVORITE', item)
     },
     getProduct (context, id) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
-      context.commit('LOADINGITEM', id, { root: true })
+      context.commit('LOADINGITEM', id)
       axios.get(api).then((response) => {
-        context.commit('PRODUCT', response.data.product, { root: true })
-        context.commit('PRODUCTIMAGESRC', response.data.product.imageUrl, { root: true })
+        context.commit('PRODUCT', response.data.product)
+        context.commit('PRODUCTIMAGESRC', response.data.product.imageUrl)
         for (let i = 0; i < this.state.productPic.length; i++) {
           if (this.state.productPic[i].id === this.state.product.id) {
-            context.commit('PRODUCTPICI', this.state.productPic[i], { root: true })
+            context.commit('PRODUCTPICI', this.state.productPic[i])
           }
         }
-        context.commit('LOADINGITEM', '', { root: true })
+        context.commit('LOADINGITEM', '')
         $('#moreModal').modal('show')
       })
     },
@@ -79,10 +78,10 @@ export default new Vuex.Store({
               product_id: id,
               qty: totalQty
             }
-            context.commit('LOADINGITEM', id, { root: true })
+            context.commit('LOADINGITEM', id)
             axios.post(api, { data: CartContent }).then((response) => {
               if (response.data.success) {
-                context.commit('LOADINGITEM', '', { root: true })
+                context.commit('LOADINGITEM', '')
                 $('#addToCartModal').modal('show')
                 setTimeout(() => {
                   $('#addToCartModal').modal('hide')
@@ -98,10 +97,10 @@ export default new Vuex.Store({
           product_id: id,
           qty
         }
-        context.commit('LOADINGITEM', id, { root: true })
+        context.commit('LOADINGITEM', id)
         axios.post(api, { data: CartContent }).then((response) => {
           if (response.data.success) {
-            context.commit('LOADINGITEM', '', { root: true })
+            context.commit('LOADINGITEM', '')
             $('#addToCartModal').modal('show')
             setTimeout(() => {
               $('#addToCartModal').modal('hide')
@@ -114,23 +113,23 @@ export default new Vuex.Store({
     },
     getProductPic (context) {
       axios.get('showProductPic.json').then((response) => {
-        context.commit('PRODUCTPIC', response.data, { root: true })
+        context.commit('PRODUCTPIC', response.data)
       })
     },
     changeProductImageSrc (context, pn) {
       if (pn === 'ori') {
-        context.commit('PRODUCTIMAGESRC', this.state.product.imageUrl, { root: true })
+        context.commit('PRODUCTIMAGESRC', this.state.product.imageUrl)
       } else {
-        context.commit('PRODUCTIMAGESRC', this.state.productPicI[pn], { root: true })
+        context.commit('PRODUCTIMAGESRC', this.state.productPicI[pn])
       }
     },
     removeCartItem (context, id) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
-      context.commit('LOADING', true, { root: true })
+      context.commit('LOADING', true)
       axios.delete(api).then((response) => {
         if (response.data.success) {
           context.dispatch('getCart')
-          context.commit('LOADING', false, { root: true })
+          context.commit('LOADING', false)
         }
       })
     },
@@ -146,7 +145,7 @@ export default new Vuex.Store({
       })
     },
     changeShowItem (context, item) {
-      context.commit('SHOWITEM', item, { root: true })
+      context.commit('SHOWITEM', item)
     }
   },
   mutations: {
