@@ -5,7 +5,14 @@
         <div class="col-xs-12 col-md-4 col-lg-3" style="padding: 20px">
           <div style="border: 3px solid hotpink; padding: 10px">
             <div class="jcc">
-              <div class="btn" style="background-color: hotpink; color: white; font-style: bold">
+              <div
+                class="btn"
+                style="
+                  background-color: hotpink;
+                  color: white;
+                  font-style: bold;
+                "
+              >
                 FOUNTAIN HEADLINERS
               </div>
             </div>
@@ -14,7 +21,12 @@
               I.Choose artists below that you would like them to be headliners:
             </div>
             <form action="vote.php" method="post">
-              <span class="form-group" v-for="(headliner, idx) in headliners" :key="idx" style="margin-right: 24px">
+              <span
+                class="form-group"
+                v-for="(headliner, idx) in headliners"
+                :key="idx"
+                style="margin-right: 24px"
+              >
                 <input
                   :id="headliner.artist"
                   type="checkbox"
@@ -34,7 +46,9 @@
                 />
               </div>
             </form>
-            <p class="fountainheadlinerstitle mt-2">II.Otherwise, make a wish:</p>
+            <p class="fountainheadlinerstitle mt-2">
+              II.Otherwise, make a wish:
+            </p>
             <form action="recommend.php" method="post">
               <div class="form-group">
                 <input
@@ -70,23 +84,40 @@
 
           <div class="row py-2">
             <div class="col">
-              <h5 class="tac" style="color: midnightblue">See who would perform at the fest by genre</h5>
+              <h5 class="tac" style="color: midnightblue">
+                See who would perform at the fest by genre
+              </h5>
               <div class="form-group">
                 <select class="form-control" v-model="selectedGenre">
-                  <option v-for="(genre, key) in genres" :key="key" :value="genre">{{ genre }}</option>
+                  <option
+                    v-for="(genre, key) in genres"
+                    :key="key"
+                    :value="genre"
+                  >
+                    {{ genre }}
+                  </option>
                 </select>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-12 col-md-6" v-for="(post, idx) in filteredPosts" :key="idx">
+            <div
+              class="col-xs-12 col-md-6"
+              v-for="(post, idx) in filteredPosts"
+              :key="idx"
+            >
               <div class="card lineupcard">
-                <img class="card-img-top" :src="post.imgUrl" :alt="post.artist" />
+                <img
+                  class="card-img-top"
+                  :src="post.imgUrl"
+                  :alt="post.artist"
+                />
                 <div class="card-body card-bodylineup">
                   <h5 class="card-title tac">{{ post.artist }}</h5>
                   <p class="card-text">{{ post.introduction }}</p>
                   <a :href="post.musicVideoUrl" class="btn btn-danger d-block">
-                    <i class="fas fa-angle-left"></i>{{ post.musicVideoName }}<i class="fas fa-angle-right"></i
+                    <i class="fas fa-angle-left"></i>{{ post.musicVideoName
+                    }}<i class="fas fa-angle-right"></i
                   ></a>
                 </div>
               </div>
@@ -100,33 +131,52 @@
 
 <script>
 export default {
-  name: 'Lineup',
+  name: "Lineup",
 
-  data () {
+  data() {
     return {
       progresslength: 0,
       posts: [],
-      genres: ['All', 'Pop', 'Rock', 'Punk'],
-      selectedGenre: 'All',
+      genres: ["All", "Pop", "Rock", "Punk"],
+      selectedGenre: "All",
       headliners: [],
       voteforartist: [],
-      recommendartist: { artist: '' }
-    }
+      recommendartist: { artist: "" },
+    };
   },
+  // computed() {
+  //   const htmlToStr = (strs, ...args) =>
+  //     strs
+  //       .map(
+  //         (str, i) =>
+  //           `${str}${
+  //             args[i]
+  //               ? `${args[i]
+  //                   .replace(/&/g, "&amp;")
+  //                   .replace(/</g, "&lt;")
+  //                   .replace(/>/, "&gt;")}`
+  //               : ""
+  //           }`
+  //       )
+  //       .join("");
+  //   htmlToStr(this.recommendartist.artist);
+  // },
 
   methods: {
-    getPosts () {
-      const vm = this
-      vm.$http.get('lineup.json').then((response) => {
-        vm.posts = response.data
-        vm.progresslength = (vm.posts.length / 20) * 100
-      })
+    getPosts() {
+      const vm = this;
+      vm.$http.get("lineup.json").then((response) => {
+        vm.posts = response.data;
+        vm.progresslength = (vm.posts.length / 20) * 100;
+      });
     },
-    getHeadliners () {
-      this.$axios.get('https://fishcha842.000webhostapp.com/headliners.php').then((response) => {
-        this.headliners = response.data
-      })
-    }
+    getHeadliners() {
+      this.$axios
+        .get("https://fishcha842.000webhostapp.com/headliners.php")
+        .then((response) => {
+          this.headliners = response.data;
+        });
+    },
     // toFormData(obj) {
     //   let fd = new FormData()
     //   for (let i in obj) {
@@ -149,24 +199,24 @@ export default {
   },
 
   computed: {
-    filteredPosts () {
-      const vm = this
-      const selectedGenre = vm.selectedGenre
-      if (selectedGenre === 'All') {
-        return vm.posts
+    filteredPosts() {
+      const vm = this;
+      const selectedGenre = vm.selectedGenre;
+      if (selectedGenre === "All") {
+        return vm.posts;
       } else {
         return vm.posts.filter((post) => {
-          return post.genre === selectedGenre
-        })
+          return post.genre === selectedGenre;
+        });
       }
-    }
+    },
   },
 
-  created () {
-    this.getHeadliners()
-    this.getPosts()
-  }
-}
+  created() {
+    this.getHeadliners();
+    this.getPosts();
+  },
+};
 </script>
 
 <style lang="scss" scoped>

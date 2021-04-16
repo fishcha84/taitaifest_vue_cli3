@@ -178,35 +178,35 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 
 export default {
-  data () {
+  data() {
     return {
-      username: ''
-    }
+      username: "",
+    };
   },
   methods: {
-    changeClassName (item) {
-      $(item).toggleClass('on off')
+    changeClassName(item) {
+      $(item).toggleClass("on off");
     },
-    save () {
-      window.scrollTo(0, 0)
-      this.getPdf(this.username + "'s Taitaifest timetable")
-    }
+    save() {
+      window.scrollTo(0, 0);
+      this.getPdf(this.username + "'s Taitaifest timetable");
+    },
   },
-  mounted () {
+  mounted() {
     (function (d, s, id) {
-      var js
-      var pjs = d.getElementsByTagName(s)[0]
-      if (d.getElementById(id)) return
-      js = d.createElement(s)
-      js.id = id
-      js.src = '//www.tickcounter.com/static/js/loader.js'
-      pjs.parentNode.insertBefore(js, pjs)
-    })(document, 'script', 'tickcounter-sdk')
-  }
-}
+      var js;
+      var pjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//www.tickcounter.com/static/js/loader.js";
+      pjs.parentNode.insertBefore(js, pjs);
+    })(document, "script", "tickcounter-sdk");
+  },
+};
 </script>
 
 <style>
